@@ -17,30 +17,32 @@ int x3 [7] = {0,1,0,0,0,1,1};
 int desired [7] = {0,0,0,0,0,0,1};
 
 float threshold = 0.5;
-float learning_rate = 0.5;
+float learning_rate = 0.1;
 float weights [3] = {0.0, 0.0, 0.0};
-
-
+int inter =50;
 int classification (int i ){
-    	
-	return (x1[i]*desired[i] + x2[i]*desired[i] + x3[i]*desired[i]);	 
+    
+	return (x1[i]*weights[0] + x2[i]*weights[1] + x3[i]*weights[2]);	 
 
 }
 
 
-int main (int argc, char ** argv ) {
-
-	while (1)
-	{
+int main ( void) {
+	int count = 0;
+	while (count < inter){
 		int r = 0;
+		count ++;
 		int count_error = 0;
         
 		for (int i = 0 ; i < 8; ++i)
 		{
-			cout << " weights: " << weights[1] << " " << weights[2] << " " << weights[3] << endl;
-			
-			if (classification (i) > threshold )
+			cout << " weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
+			float result = classification (i); 
+		
+			if ( result > threshold ){
+				
 				r = 0;
+			}
 			else 
 				r = 1;
 			
@@ -49,16 +51,18 @@ int main (int argc, char ** argv ) {
 			if (error != 0 ){ 
 				count_error++;
 				for (int j = 0; j < 3; ++j)
-				{    
-                    weights [j] += (learning_rate * error * x1[i]) +
-						(learning_rate * error * x2[i]) + (learning_rate * error * x3[i]);				
+				{
+					int entrada [3] = {x1[i],x2[i],x3[i]}; 
+                    weights [j] += (learning_rate * error * entrada[j]);
+						cout << " entrada" << entrada[j];
+
 				}
                 
 			}
 			
 		}
 		if 	(count_error == 0)
-			break;
+			return 0;
 	}
 	
 }
