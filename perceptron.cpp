@@ -20,7 +20,7 @@ float threshold = 0.5;
 float learning_rate = 0.1;
 float weights [3] = {0.0, 0.0, 0.0};
 int inter =50;
-int classification (int i ){
+float classification (int i ){
     
 	return (x1[i]*weights[0] + x2[i]*weights[1] + x3[i]*weights[2]);	 
 
