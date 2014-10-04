@@ -9,30 +9,21 @@ using namespace std;
 #include <stdio.h>
 #include <iostream>
 
-#define LEARNING_RATE	0.1f
-#define NUM_OF_X		3
-#define NUM_CASES		4
-#define MAX_ITER		150
-
 class Perceptron
 {
-public:
-	int input[NUM_OF_X][NUM_CASES];
-	int desired[NUM_CASES];
+private:
+	int num_variables;
+	int num_cases;
+	int learning_rate;
+	int **input;
+	int *desired;
+	float *weights;
 
-	float learning_rate;
-	float weights[NUM_OF_X];
-	
-	Perceptron(int input[NUM_OF_X][NUM_CASES],
-			   int desired[NUM_CASES],
-					   float learning,
-					   float weights[NUM_OF_X]);
-	
 	float dot_product(int*, float*);
-	
 	int Z(float result);
-	
-	float* perceptron(void);
-	
-	int prueba(int[NUM_OF_X] , float[NUM_OF_X]);
+
+public:
+	void learn();
+	Perceptron(int** input, int *desired, float learning_rate, float* weights, int num_cases, int num_x);
+	int prueba(int *input, float *w);
 };

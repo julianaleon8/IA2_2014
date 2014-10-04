@@ -8,22 +8,20 @@ using namespace std;
 
 #include "perceptron.h"
 
-Perceptron::Perceptron(int i[NUM_OF_X][NUM_CASES],
-					   int d[NUM_CASES],
-					   float learning,
-					   float w[NUM_OF_X]
-  					)
+Perceptron::Perceptron(int** input, int *desired, float learning_rate, float* weights, int num_cases, int num_x)
 {
-	this->input = i;
-	this->desired = d;
-	this->learning_rate = learning;
-	this->weights =  w;
+	this->input = input;
+	this->desired = desired;
+	this->learning_rate = learning_rate;
+	this->weights = weights;
+	this->num_cases = num_cases;
+	this->num_variables = num_x;
 }
 	
 inline float Perceptron::dot_product(int* inputCase, float* w) 
 {
 	float res = 0;
-	for (int i = 0; i < NUM_CASES; ++i)
+	for (int i = 0; i < num_cases; ++i)
 		res += inputCase[i] * w[i];
 	return res;
 }
@@ -36,17 +34,17 @@ inline int Perceptron::Z(float result)
 		return -1;
 }
 
-float* Perceptron::perceptron(void) 
+void Perceptron::learn() 
 {
 	// For max iterations
 	int counter = 0;
 	bool no_error = true;
-	while (counter < MAX_ITER)
+	while (counter < 150)
 	{
 		int res;
 		int error;
 		// For each test case
-		for (int i = 0; i < NUM_CASES; ++i)
+		for (int i = 0; i < num_cases; ++i)
 		{
 			// Calculate the doc product, then check if the value is 1 o -1
 			res = Z(dot_product(input[i], weights));
@@ -56,28 +54,25 @@ float* Perceptron::perceptron(void)
 			if (error != 0)
 			{
 				no_error = false;
-				for (int j = 0; j < NUM_OF_X; ++j)
-					weights[j] = LEARNING_RATE * error * input[j][i];
+				for (int j = 0; j < num_variables; ++j)
+					weights[j] = learning_rate * error * input[j][i];
 			}
 		}
 
 		if (!no_error)
 		{
 			cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
-			return weights;
 			break;
 		}
 	}
 }
 
-int prueba(int input[NUM_OF_X], float w[NUM_OF_X]){
+int Perceptron::prueba(int *input, float *w) {
 	
 	float sumatoria = 0.0;
-        
-	for(int i = 0 ; i < NUM_OF_X ; ++i)
-	{
-	    sumatoria += input[i] * w[i];	
-    }
 
-    return sumatoria > 0.5 ? 1:0;	
+	for (int i = 0; i < num_variables; ++i)
+		sumatoria += input[i] * w[i];
+
+	return sumatoria > 0.5 ? 1:0;
 }
