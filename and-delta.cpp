@@ -14,29 +14,22 @@ using namespace std;
 #define NUM_OF_X		3
 #define NUM_CASES		4
 
-int input[NUM_OF_X][NUM_CASES] = {
-	{ 1, 1, 1, 1 },
-	{ 0, 0, 1, 1 },
-	{ 0, 1, 0, 1 }
+int input[NUM_CASES][NUM_OF_X] = {
+	{ 1, 0, 0 },
+	{ 1, 0, 1 },
+	{ 1, 1, 0 },
+	{ 1, 1, 1 },
 };
 
 int desired[NUM_CASES] = { 0, 0, 0, 1 };
 
-float learning_rate = 0.1;
-float weights[NUM_OF_X] = { 0.1, 0.1, 0.1 };
+float weights[NUM_OF_X] = { 0.1f, 0.1f, 0.1f };
 
 inline float dot_product(int* inputCase, float* w) {
 	float res = 0;
-	for (int i = 0; i < NUM_CASES; ++i)
+	for (int i = 0; i < NUM_OF_X; ++i)
 		res += inputCase[i] * w[i];
 	return res;
-}
-
-inline int Z(float result) {
-	if (result > 0)
-		return 1;
-	else
-		return -1;
 }
 
 int main(void) {
@@ -45,33 +38,36 @@ int main(void) {
 	bool no_error = true;
 	while (counter < MAX_ITER)
 	{
-		int res;
-		int error;
-		float aux, deltak;
+		float res;
+		float error;
+		float deltak = 0.0f;
+		bool no_error = true;
+		float delta_weights[3];
 		// For each test case
 		for (int i = 0; i < NUM_CASES; ++i)
 		{
+			delta_weights[0] = 0.0f;
+			delta_weights[1] = 0.0f;
+			delta_weights[2] = 0.0f;
 			// Calculate the doc product, then check if the value is 1 o -1
-			res = Z(dot_product(input[i], weights));
+			res = dot_product(input[i], weights);
 			error = desired[i] - res;
-			aux = res * (1 - res)* error;
-			
-			for (int k = 0; k < NUM_OF_X; ++k){
-				deltak = deltak + aux * weights[k];
-			}
-			
-			aux = deltak * res * (1 - res);
-			
-			// If we have an error
-			if (error != 0)
-			{
-				no_error = false;
-				for (int j = 0; j < NUM_OF_X; ++j)
-					weights[j] = weights[j] + LEARNING_RATE * input[j][i] * aux;
-			}
+
+			for (int j = 0; j < NUM_OF_X; ++j)
+				delta_weights[j] = LEARNING_RATE * input[i][j] * error;
 		}
 
-		if (!no_error)
+		for (int i = 0; i < NUM_CASES; ++i)
+			weights[i] += delta_weights[i];
+
+		cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
+
+		if (error != 0)
+			no_error = false;
+
+		++counter;
+
+		if (no_error)
 		{
 			cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 			break;
