@@ -10,7 +10,7 @@ using namespace std;
 #include <iostream>
 
 #define MAX_ITER		1000
-#define LEARNING_RATE	0.99f
+#define LEARNING_RATE	0.1f
 #define NUM_OF_X		3
 #define NUM_CASES		4
 
@@ -21,7 +21,7 @@ int input[NUM_CASES][NUM_OF_X] = {
 	{ 1, 1 ,1 },
 };
 
-int desired[NUM_CASES] = { 0, 0, 0, 1 };
+int desired[NUM_CASES] = { 0, 1, 1, 0 };
 
 float learning_rate = 0.1f;
 float weights[NUM_OF_X] = { 0.0, 0.0, 0.0 };

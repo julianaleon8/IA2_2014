@@ -9,8 +9,8 @@ using namespace std;
 #include <stdio.h>
 #include <iostream>
 
-#define MAX_ITER		150
-#define LEARNING_RATE	0.1f
+#define MAX_ITER		1000
+#define LEARNING_RATE	0.99f
 #define NUM_OF_X		3
 #define NUM_CASES		4
 
@@ -71,8 +71,14 @@ int main(void) {
 
 		if (no_error)
 		{
+			cout << "Number of iterations needed " << counter << endl;
 			cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
-			break;
+			return 0;
 		}
+
+		++counter;
 	}
+
+	cout << "Max number of iterations" << endl;
+	cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 }
