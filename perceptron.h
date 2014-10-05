@@ -8,6 +8,7 @@ using namespace std;
 
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 
 class Perceptron
 {
@@ -15,15 +16,14 @@ private:
 	int num_variables;
 	int num_cases;
 	int learning_rate;
-	int **input;
-	int *desired;
-	float *weights;
+	vector< vector<int> > input;
+	vector<int> desired;
+	vector<float> weights;
 
-	float dot_product(int*, float*);
+	float dot_product(vector<int>, vector<float>);
 	int Z(float result);
 
 public:
 	void learn();
-	Perceptron(int** input, int *desired, float learning_rate, float* weights, int num_cases, int num_x);
-	int prueba(int *input, float *w);
+	Perceptron(int** input, int *desired, float learning_rate, float* weights);
 };

@@ -7,18 +7,20 @@
 using namespace std;
 
 #include "perceptron.h"
+#include <vector>
+#include <iterator>
 
-Perceptron::Perceptron(int** input, int *desired, float learning_rate, float* weights, int num_cases, int num_x)
+Perceptron::Perceptron(int** input, int *desired, float learning_rate, float* weights)
 {
 	this->input = input;
-	this->desired = desired;
+	this->desired = vector<int>(begin(desired), end(desired));
 	this->learning_rate = learning_rate;
 	this->weights = weights;
 	this->num_cases = num_cases;
 	this->num_variables = num_x;
 }
 	
-inline float Perceptron::dot_product(int* inputCase, float* w) 
+inline float Perceptron::dot_product(vector<int> inputCase, vector<float> w)
 {
 	float res = 0;
 	for (int i = 0; i < num_cases; ++i)

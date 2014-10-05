@@ -1,5 +1,10 @@
 #include "perceptron.h"
 
+#define MAX_ITER		150
+#define LEARNING_RATE	0.1f
+#define NUM_OF_X		3
+#define NUM_CASES		4
+
 int main(void){
 	
 	int input[NUM_OF_X][NUM_CASES] = {
