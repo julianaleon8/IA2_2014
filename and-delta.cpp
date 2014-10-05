@@ -49,8 +49,8 @@ int main(void) {
 			delta_weights[0] = 0.0f;
 			delta_weights[1] = 0.0f;
 			delta_weights[2] = 0.0f;
-			// Calculate the doc product, then check if the value is 1 o -1
-			res = dot_product(input[i], weights);
+		
+			res =dot_product(input[i], weights);
 			error = desired[i] - res;
 
 			for (int j = 0; j < NUM_OF_X; ++j)
