@@ -75,9 +75,9 @@ int main(void) {
 			//cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 			return 0;
 		}
-
+		cout << counter << "\t" << error << endl;
 		++counter;
-		cout << counter << "   " << error << endl;
+		
 	}
 
 	//cout << "Max number of iterations" << endl;

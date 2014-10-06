@@ -71,17 +71,17 @@ int main(void) {
 
 		if (total_error > 0.01)
 			no_error = false;
-
+		cout << counter << "\t" << error << endl;
 		++counter;
 		
 		if (no_error)
 		{
-			cout << "Number of iterations needed " << counter << endl;
-			cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
+//			cout << "Number of iterations needed " << counter << endl;
+//			cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 			break;
 		}
 	}
 
-	cout << "Max number of iterations" << endl;
-	cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
+//	cout << "Max number of iterations" << endl;
+//	cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 }
