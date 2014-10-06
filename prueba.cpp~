@@ -1,0 +1,45 @@
+#include < stdio.h >
+#include < math.h > 
+
+struct Data {
+	double x[2];
+	double y;
+};
+const Data data[4] = {
+		{
+	{1, 1}, 0.1},
+	{{1, 2}, 0.9}, 
+	{{ 2, 1}, 0.9}, 
+	{{2, 2}, 0.9},
+};
+double w[3] = {
+	0.1, 0.1, 0.1
+}, dw[3];
+const double ETA = 0.05,
+	EPSILON = 0.01;
+double sigma(double x) {
+	return 1 / (1 + exp(-x));
+}
+int main() {
+	int gen = 1;
+	double error;
+	do {
+		error = dw[0] = dw[1] = dw[2] = 0;
+		for (int i = 0; i < 4; i++) {
+			double out = sigma(data[i].x[0] * w[0] + data[i].x[1] * w[1] + w[2]);
+			double dsigma = out * (1 - out);
+			double delta = data[i].y - out;
+			error += delta * delta;
+			dw[0] += ETA * delta * dsigma * data[i].x[0];
+			dw[1] += ETA * delta * dsigma * data[i].x[1];
+			dw[2] += ETA * delta * dsigma;
+		}
+		printf("%4d: (%5.2f,%5.2f,%5.2f) = %5.3f (%6.3f,%6.3f,%6.3f) ->", gen, w[0], w[1], w[2], error, dw[0], dw[1], dw[2]);
+		w[0] += dw[0];
+		w[1] += dw[1];
+		w[2] += dw[2];
+		printf(" (%5.2f,%5.2f,%5.2f)\n", w[0], w[1], w[2]);
+		gen++;
+	} while (error >= EPSILON);
+	return 0;
+}

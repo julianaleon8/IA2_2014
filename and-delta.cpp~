@@ -64,7 +64,7 @@ int main(void) {
 		cout << "Weights (" << counter << "): " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 		cout << "Error: " << total_error << endl;
 		
-		if (total_error > 0.01f)
+		if (total_error < 0.01f)
 			no_error = false;
 
 		++counter;
