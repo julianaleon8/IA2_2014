@@ -7,7 +7,7 @@
 using namespace std;
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>     /* abs */
 #include <iostream>
 #include <math.h>
 
@@ -23,7 +23,7 @@ int input[NUM_CASES][NUM_OF_X] = {
 	{ 1, 1, 1 },
 };
 
-int desired[NUM_CASES] = { 0, 0, 0, 1 };
+int desired[NUM_CASES] = { 0, 1, 1, 1 };
 
 double weights[NUM_OF_X] = { 0.5, 0.2, 0.2 };
 double delta_weights[3] = { 0.0, 0.0, 0.0 };

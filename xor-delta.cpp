@@ -7,11 +7,12 @@
 using namespace std;
 
 #include <stdio.h>
-#include <stdlib.h>     /* abs */
+#include <stdlib.h>
 #include <iostream>
+#include <math.h>
 
 #define MAX_ITER		100000
-#define LEARNING_RATE	0.1f
+#define LEARNING_RATE	0.01f
 #define NUM_OF_X		3
 #define NUM_CASES		4
 
@@ -24,13 +25,18 @@ int input[NUM_CASES][NUM_OF_X] = {
 
 int desired[NUM_CASES] = { 0, 1, 1, 0 };
 
-float weights[NUM_OF_X] = { 0.1f, 0.1f, 0.1f };
+double weights[NUM_OF_X] = { 0.5, 0.2, 0.2 };
+double delta_weights[3] = { 0.0, 0.0, 0.0 };
 
-inline float dot_product(int* inputCase, float* w) {
-	float res = 0;
+inline double dot_product(int* inputCase, double* w) {
+	double res = 0;
 	for (int i = 0; i < NUM_OF_X; ++i)
 		res += inputCase[i] * w[i];
 	return res;
+}
+
+inline double sigma(double x) {
+	return 1 / (1 + exp(-x));
 }
 
 int main(void) {
@@ -40,39 +46,42 @@ int main(void) {
 	
 	while (counter < MAX_ITER)
 	{
-		float res;
-		float error;
+		double res;
+		double error;
+		double o;
 		bool no_error = true;
-		float total_error = 0.0f;
-		float delta_weights[3] = {0.0f,0.0f,0.0f};
+		double total_error = 0.0;
+		delta_weights[0] = 0.0;
+		delta_weights[1] = 0.0;
+		delta_weights[2] = 0.0;
 		// For each test case
 		for (int i = 0; i < NUM_CASES; ++i)
 		{
-			res = dot_product(input[i], weights);
-			
+			res = sigma(dot_product(input[i], weights));
+			o = res * (1 - res);
 			error = desired[i] - res;
+			total_error += error*error;
 
 			for (int j = 0; j < NUM_OF_X; ++j)
- 				delta_weights[j] = LEARNING_RATE * input[i][j] * error;
+				delta_weights[j] += LEARNING_RATE * o *input[i][j] * error;
 		}
 
-		for (int i = 0; i < NUM_OF_X; ++i){
+		for (int i = 0; i < NUM_OF_X; ++i)
 			weights[i] += delta_weights[i];
-			total_error += (weights[i] - delta_weights[i]) * (weights[i] - delta_weights[i]);
-		}
-		
-		cout << "Weights (" << counter << "): " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
-		cout << "Error: " << total_error << endl;
-		
-		if (total_error < 0.01f)
+
+		if (total_error > 0.01)
 			no_error = false;
 
 		++counter;
 		
 		if (no_error)
 		{
+			cout << "Number of iterations needed " << counter << endl;
 			cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 			break;
 		}
 	}
+
+	cout << "Max number of iterations" << endl;
+	cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 }
