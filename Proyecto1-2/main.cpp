@@ -26,7 +26,7 @@ int main(){
 
 	vector< vector<float> > examples;
 
-	vector<float> example(3);
+	vector<float> example(4);
 	char *sopa = NULL;
 	for (int j = 0 ; j < NUM_CASES; j++){
 		
@@ -37,14 +37,14 @@ int main(){
 		//cout << aux << endl;
 		sopa = strtok(aux, " ");
 		
-		example[0]= atof(sopa);	
+		example[0] = 1.0;
+		example[1]= atof(sopa);	
 		sopa = strtok (NULL, " ");
-		example[1]= atof(sopa);
+		example[2]= atof(sopa);
 		sopa = strtok (NULL, " ");
-		example[2]= atof(sopa);	
+		example[3]= atof(sopa);	
 		
 		
-
 		examples.push_back(example);
 		cout << examples[j][0] << "    "<< examples[j][1] << "    "<< examples[j][2] << endl;
 
