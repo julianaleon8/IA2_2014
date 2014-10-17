@@ -12,7 +12,7 @@ class Backpropagation
 	float weights[2][2][3];
 	double dot_product(vector<float> inputCase,float *w);
 	double sigma(double x) ;
-	double devSigma(double x);
+	double dev_sigma(double x);
 	void train(vector< vector<float> >, float);
 	void test(vector< vector<float> >);
 };

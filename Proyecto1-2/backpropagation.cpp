@@ -16,7 +16,7 @@ inline double Backpropagation::sigma(double x)
 	return 1 / (1 + exp(-x));
 }
 
-inline double Backpropagation::devSigma(double x)
+inline double Backpropagation::dev_sigma(double x)
 {
 	return x * (1 - x);
 }
@@ -26,16 +26,23 @@ void Backpropagation::train(vector< vector<float> > examples, float learning_rat
 	
 	vector<double> in; 
 	double ini = 0.0;
-	for(;;)
+	for (;;)
 	{
 		for (std::vector< vector<float> >::iterator it = examples.begin() ; it != examples.end(); ++it)
 		{
-			ini = dot_product(*it , weights[0][0]);
-			in.push_back(sigma(ini));
+			ini = dot_product(*it, weights[0][0]);
+			in.push_back(ini);
 			
 			ini = dot_product(*it, weights[0][1]);
-			in.push_back(sigma(ini));
+			in.push_back(ini);
 		}
+
+		double delta[2] = {0.0, 0.0};
+
+		delta[0] = dev_sigma(in[0]) * (*it[3] - sigma(in[0]));
+		delta[1] = dev_sigma(in[0]) * (*it[3] - sigma(in[0]));
+
+
 	}
 }
 
