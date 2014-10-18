@@ -6,7 +6,6 @@
 
 void NeuralNetwork::init_weights()
 {
-
 	srand (static_cast <unsigned> (time(0)));
 
 	for (int i = 0; i <= n_input; ++i)
@@ -54,7 +53,7 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 
 	w_hidden_to_output = new(double*[n_hidden + 1]);
 	delta_hidden_to_output = new(double*[n_hidden + 1]);
-	for (int = 0; i <= n_hidden; ++i)
+	for (int i = 0; i <= n_hidden; ++i)
 	{
 		w_hidden_to_output[i] = new(double[n_output]);
 		delta_hidden_to_output[i] = new(double[n_output]);
@@ -170,12 +169,28 @@ void NeuralNetwork::update_weights()
 		for (int j = 0; j < n_output; ++j)
 		{
 			w_hidden_to_output[i][j] += delta_hidden_to_output[i][j];
-			delta_hidden_to_output[i][j] = 0
+			delta_hidden_to_output[i][j] = 0;
 		}
 	}
 }
 
-/*void NeuralNetwork::run_training_iteration(dataReader)
+void NeuralNetwork::training_iteration(DataReader d, int num_cases)
 {
+	for (int i = 0; i < num_cases; ++i)
+	{
+		double input[2];
+		input[0] = d->patternX[i];
+		input[1] = d->patternY[i];
 
-}*/
+		double desired[1];
+		desired[0] = d->target[i];
+		fowardpropagate(input);
+		backpropagate(desired);
+
+		/*for (int i = 0; i < n_output; ++i)
+		{
+		}*/
+
+		update_weights();
+	}
+}

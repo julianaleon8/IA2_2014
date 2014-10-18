@@ -1,8 +1,5 @@
 #include "dataReader.h"
 
-#ifdef NETWORK
-#define NETWORK
-
 class NeuralNetwork
 {
 private:
@@ -35,7 +32,7 @@ private:
 	void fowardpropagate(double*);
 	double dot_product(double*, double*, int);
 	void update_weights();
-	void run_training_iteration(dataReader);
+	void training_iteration(DataReader, int);
 
 public:
 	NeuralNetwork(int, int, int);
@@ -45,5 +42,3 @@ public:
 
 	void train_network();
 };
-
-#endif
