@@ -174,16 +174,16 @@ void NeuralNetwork::update_weights()
 	}
 }
 
-void NeuralNetwork::training_iteration(DataReader d, int num_cases)
+void NeuralNetwork::training_iteration(const DataReader d, int num_cases)
 {
 	for (int i = 0; i < num_cases; ++i)
 	{
 		double input[2];
-		input[0] = d->patternX[i];
-		input[1] = d->patternY[i];
+		input[0] = d.patternX[i];
+		input[1] = d.patternY[i];
 
 		double desired[1];
-		desired[0] = d->target[i];
+		desired[0] = d.target[i];
 		fowardpropagate(input);
 		backpropagate(desired);
 
