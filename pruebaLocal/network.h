@@ -1,6 +1,5 @@
 #include "dataReader.h"
 
-
 class NeuralNetwork
 {
 private:
@@ -33,11 +32,12 @@ private:
 	void fowardpropagate(double*);
 	double dot_product(double*, double*, int);
 	void update_weights();
-	void run_training_iteration(DataReader);
+void training_iteration(DataReader, int);
+
 
 public:
 	NeuralNetwork(int, int, int);
-	set_training_parameter(double, double, int);
+	void set_training_parameter(double, double, int);
 	~NeuralNetwork();
 	void backpropagate(double*);
 
