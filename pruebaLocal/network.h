@@ -36,7 +36,7 @@ private:
 
 public:
 	NeuralNetwork(int, int, int);
-	set_training_parameter(double, double, int);
+	void set_training_parameter(double, double, int);
 	~NeuralNetwork();
 	void backpropagate(double*);
 

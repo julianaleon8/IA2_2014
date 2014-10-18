@@ -33,40 +33,40 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 	n_hidden = nh;
 	n_output = no;
 
-	input_neurons_output = new(double[n_input + 1]);
-	hidden_neurons_output = new(double[n_hidden + 1]);
-	output_neutons_output = new(double[n_output]);
+	input_neurons_output = new double[n_input + 1];
+	hidden_neurons_output = new double[n_hidden + 1];
+	output_neutons_output = new double[n_output];
 
-	hidden_error = new(double[n_hidden + 1]);
-	output_error = new(double[n_output + 1]);
+	hidden_error = new double[n_hidden + 1];
+	output_error = new double[n_output + 1];
 
 	input_neurons_output[n_input] = 1;
 	hidden_neurons_output[n_hidden] = 1;
 
-	w_input_to_hidden = new(double*[n_input + 1]);
-	delta_input_to_hidden = new(double*[n_input + 1]);
+	w_input_to_hidden = new double*[n_input + 1];
+	delta_input_to_hidden = new double*[n_input + 1];
 	for (int i = 0; i <= n_input; ++i)
 	{
-		w_input_to_hidden[i] = new(double[n_hidden]);
-		delta_input_to_hidden[i] = new(double[n_hidden]);
+		w_input_to_hidden[i] = new double[n_hidden];
+		delta_input_to_hidden[i] = new double[n_hidden];
 	}
 
-	w_hidden_to_output = new(double*[n_hidden + 1]);
-	delta_hidden_to_output = new(double*[n_hidden + 1]);
+	w_hidden_to_output = new double*[n_hidden + 1];
+	delta_hidden_to_output = new double*[n_hidden + 1];
 	for (int i = 0; i <= n_hidden; ++i)
 	{
-		w_hidden_to_output[i] = new(double[n_output]);
-		delta_hidden_to_output[i] = new(double[n_output]);
+		w_hidden_to_output[i] = new double[n_output];
+		delta_hidden_to_output[i] = new double[n_output];
 	}
 
 	init_weights();
 }
 
-NeuralNetwork::NeuralNetwork()
+NeuralNetwork::~NeuralNetwork()
 {
-	delete[] input_neurons;
-	delete[] hidden_neurons;
-	delete[] output_neutons;
+	delete[] input_neurons_output;
+	delete[] hidden_neurons_output;
+	delete[] output_neutons_output;
 	delete[] hidden_error;
 	delete[] output_error;
 
@@ -98,7 +98,7 @@ double NeuralNetwork::dot_product(double* x, double* y, int size)
 {
 	double res = 0;
 	for (int i = 0; i < size; ++i)
-		res += x[i] * y[i]
+		res += x[i] * y[i];
 	return res;
 }
 
