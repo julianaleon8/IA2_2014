@@ -32,7 +32,7 @@ private:
 	void fowardpropagate(double*);
 	double dot_product(double*, double*, int);
 	void update_weights();
-void training_iteration(DataReader, int);
+	bool train_iteration(DataReader, int);
 
 
 public:

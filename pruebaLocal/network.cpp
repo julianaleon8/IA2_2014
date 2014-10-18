@@ -174,7 +174,7 @@ void NeuralNetwork::update_weights()
 	}
 }
 
-void NeuralNetwork::training_iteration(const DataReader d, int num_cases)
+bool NeuralNetwork::train_iteration(const DataReader d, int num_cases)
 {
 	for (int i = 0; i < num_cases; ++i)
 	{
@@ -186,11 +186,19 @@ void NeuralNetwork::training_iteration(const DataReader d, int num_cases)
 		desired[0] = d.target[i];
 		fowardpropagate(input);
 		backpropagate(desired);
+		bool has_error = false;
 
-		/*for (int i = 0; i < n_output; ++i)
+		for (int i = 0; i < n_output; ++i)
 		{
-		}*/
+			if (output_neutons_output[i] != desired[0])
+				has_error = true;
+		}
 
 		update_weights();
 	}
+}
+
+void NeuralNetwork::train_network()
+{
+
 }
