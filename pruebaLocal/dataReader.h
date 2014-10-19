@@ -7,6 +7,8 @@
 #define NUM_CASES 4
 class DataReader {
 public:
+
+	
 	double patternX[NUM_CASES];
 	double patternY[NUM_CASES];
 
