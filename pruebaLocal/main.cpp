@@ -14,6 +14,5 @@ int main (){
 	a.DataReader::loadData();
 	std::cout << a.patternY[0];
 	//NeuralNetwork b;
-
-
+	
 }
