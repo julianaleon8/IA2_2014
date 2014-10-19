@@ -219,3 +219,41 @@ void NeuralNetwork::train_network(const DataReader d)
 		}
 	}
 }
+
+
+double NeuralNetwork::test( const DataReader d )
+{
+	double incorrectResults = 0;
+		
+	//for every training input array
+	for ( int i = 0; i < 4; i++)
+	{						
+		double input[2];
+		input[0] = d.patternX[i];
+		input[1] = d.patternY[i];
+		double desired[1];
+		desired[0] = d.target[i];
+		
+		//feed inputs through network and backpropagate errors
+		fowardpropagate( input );
+		
+	
+		bool correctResult = true;
+
+	
+		for ( int k = 0; k < n_output; k++ )
+		{
+			
+	
+			if ( filter(output_neurons_output[k]) != desired[k])
+				 correctResult = false;
+		}
+		
+	
+		if ( !correctResult ) incorrectResults++;	
+		
+	}
+	
+	
+	return 100 - (incorrectResults/4 * 100);
+}

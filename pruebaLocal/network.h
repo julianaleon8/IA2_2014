@@ -8,7 +8,7 @@ private:
 	int n_output;
 
 	double learning_rate = 0.1;
-	int max_iter = 10000;
+	int max_iter = 2000;
 
 	// These store the output
 	double* input_neurons_output;
@@ -40,6 +40,6 @@ public:
 	void set_training_parameter(double, int);
 	~NeuralNetwork();
 	void backpropagate(const double*);
-
+	double test(const DataReader);
 	void train_network(const DataReader);
 };

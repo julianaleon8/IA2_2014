@@ -4,7 +4,7 @@
 #include <string.h>
 #include <vector>
 #include <stdlib.h>
-#define NUM_CASES 500
+#define NUM_CASES 4
 class DataReader {
 public:
 	double patternX[NUM_CASES];

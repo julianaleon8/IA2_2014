@@ -3,7 +3,7 @@
 using namespace std;
 void DataReader::loadData(){
 // File input for the training examples
-	std::ifstream input( "datos_P1_2_SD2014_n500.txt" );
+	std::ifstream input( "or.txt" );
 	// Read from file
 	string line;
 	
@@ -24,7 +24,9 @@ void DataReader::loadData(){
 		sopa = strtok (NULL, " ");
 		patternY[j]= atof(sopa);
 		sopa = strtok (NULL, " ");
-		target[j]= atof(sopa);	
+		std::cout << atof(sopa) << "target " << endl;
+		target[j]= atof(sopa);
+		
 			
 	}
 }
