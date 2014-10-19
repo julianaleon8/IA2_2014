@@ -15,4 +15,5 @@ int main ()
 	std::cout << a.patternY[0];
 	NeuralNetwork* b = new NeuralNetwork(2, 2, 1);
 	b->train_network(a);
+
 }
