@@ -35,7 +35,7 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 
 	input_neurons_output = new double[n_input + 1]();
 	hidden_neurons_output = new double[n_hidden + 1]();
-	output_neutons_output = new double[n_output]();
+	output_neurons_output = new double[n_output]();
 
 	hidden_error = new double[n_hidden + 1]();
 	output_error = new double[n_output + 1]();
@@ -66,7 +66,7 @@ NeuralNetwork::~NeuralNetwork()
 {
 	delete[] input_neurons_output;
 	delete[] hidden_neurons_output;
-	delete[] output_neutons_output;
+	delete[] output_neurons_output;
 	delete[] hidden_error;
 	delete[] output_error;
 
@@ -120,11 +120,11 @@ void NeuralNetwork::fowardpropagate(const double* pattern)
 	// Output
 	for (int i = 0; i < n_output; ++i)
 	{
-		output_neutons_output[i] = 0;
+		output_neurons_output[i] = 0;
 		for (int j = 0; j <= n_hidden; ++j)
-			output_neutons_output[i] = hidden_neurons_output[j] * w_hidden_to_output[j][i];
+			output_neurons_output[i] = hidden_neurons_output[j] * w_hidden_to_output[j][i];
 
-		output_neutons_output[i] = sigma(output_neutons_output[i]);
+		output_neurons_output[i] = sigma(output_neurons_output[i]);
 	}
 }
 
@@ -133,7 +133,7 @@ void NeuralNetwork::backpropagate(const double* desired)
 	// Output -> Hidden
 	for (int i = 0; i < n_output; ++i)
 	{
-		output_error[i] =dev_sigma(output_neutons_output[i]) * (desired[i] - output_neutons_output[i]);
+		output_error[i] =dev_sigma(output_neurons_output[i]) * (desired[i] - output_neurons_output[i]);
 
 		for (int j = 0; j <= n_hidden; ++j)
 			delta_hidden_to_output[j][i] += learning_rate * hidden_neurons_output[j] * output_error[i];
@@ -149,7 +149,6 @@ void NeuralNetwork::backpropagate(const double* desired)
 			delta_input_to_hidden[j][i] += learning_rate * input_neurons_output[j] * hidden_error[i];
 	}
 
-//	update_weights();
 }
 
 void NeuralNetwork::update_weights()
@@ -189,7 +188,7 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 
 		for (int j = 0; j < n_output; ++j)
 		{
-			if (filter(output_neutons_output[j]) != desired[j])
+			if (filter(output_neurons_output[j]) != desired[j])
 				has_error = true;
 		}
 	}
@@ -215,7 +214,7 @@ void NeuralNetwork::train_network(const DataReader d)
 		train_iteration(d, 4);
 		for (int j = 0; j < n_output; ++j)
 		{
-			std::cout << output_neutons_output[j] << std::endl;
+			std::cout << output_neurons_output[j] << std::endl;
 			std::cout << "error " << output_error[j] << std::endl;
 		}
 	}

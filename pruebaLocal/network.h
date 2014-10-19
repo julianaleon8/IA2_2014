@@ -13,7 +13,7 @@ private:
 	// These store the output
 	double* input_neurons_output;
 	double* hidden_neurons_output;
-	double* output_neutons_output;
+	double* output_neurons_output;
 
 	// These the incoming weights
 	double** w_input_to_hidden;
