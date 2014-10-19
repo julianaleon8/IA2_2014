@@ -3,10 +3,10 @@
 #include <vector>
 #include <fstream>
 #include <math.h>
+#include <stdio.h>
 
 void NeuralNetwork::init_weights()
 {
-	srand (static_cast <unsigned> (time(0)));
 
 	for (int i = 0; i <= n_input; ++i)
 		for (int j = 0; j <= n_hidden; ++j)
@@ -17,12 +17,12 @@ void NeuralNetwork::init_weights()
 			w_input_to_hidden[i][j] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));
 }
 
-inline double NeuralNetwork::sigma(double x)
+inline double NeuralNetwork::sigma(const double x)
 {
 	return 1 / (1 + exp(-x));
 }
 
-inline double NeuralNetwork::dev_sigma(double x)
+inline double NeuralNetwork::dev_sigma(const double x)
 {
 	return x * (1 - x);
 }
@@ -33,30 +33,30 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 	n_hidden = nh;
 	n_output = no;
 
-	input_neurons_output = new double[n_input + 1];
-	hidden_neurons_output = new double[n_hidden + 1];
-	output_neutons_output = new double[n_output];
+	input_neurons_output = new double[n_input + 1]();
+	hidden_neurons_output = new double[n_hidden + 1]();
+	output_neutons_output = new double[n_output]();
 
-	hidden_error = new double[n_hidden + 1];
-	output_error = new double[n_output + 1];
+	hidden_error = new double[n_hidden + 1]();
+	output_error = new double[n_output + 1]();
 
-	input_neurons_output[n_input] = 1;
-	hidden_neurons_output[n_hidden] = 1;
+	input_neurons_output[n_input] = -1;
+	hidden_neurons_output[n_hidden] = -1;
 
-	w_input_to_hidden = new double*[n_input + 1];
-	delta_input_to_hidden = new double*[n_input + 1];
+	w_input_to_hidden = new double*[n_input + 1]();
+	delta_input_to_hidden = new double*[n_input + 1]();
 	for (int i = 0; i <= n_input; ++i)
 	{
-		w_input_to_hidden[i] = new double[n_hidden];
-		delta_input_to_hidden[i] = new double[n_hidden];
+		w_input_to_hidden[i] = new double[n_hidden]();
+		delta_input_to_hidden[i] = new double[n_hidden]();
 	}
 
-	w_hidden_to_output = new double*[n_hidden + 1];
-	delta_hidden_to_output = new double*[n_hidden + 1];
+	w_hidden_to_output = new double*[n_hidden + 1]();
+	delta_hidden_to_output = new double*[n_hidden + 1]();
 	for (int i = 0; i <= n_hidden; ++i)
 	{
-		w_hidden_to_output[i] = new double[n_output];
-		delta_hidden_to_output[i] = new double[n_output];
+		w_hidden_to_output[i] = new double[n_output]();
+		delta_hidden_to_output[i] = new double[n_output]();
 	}
 
 	init_weights();
@@ -87,14 +87,13 @@ NeuralNetwork::~NeuralNetwork()
 	delete[] w_hidden_to_output;
 }
 
-void NeuralNetwork::set_training_parameter(double lr, double m, int iter)
+void NeuralNetwork::set_training_parameter(double lr, int iter)
 {
 	learning_rate = lr;
-	momentum = m;
 	max_iter = iter;
 }
 
-double NeuralNetwork::dot_product(double* x, double* y, int size)
+double NeuralNetwork::dot_product(const double* x, const double* y, const int size)
 {
 	double res = 0;
 	for (int i = 0; i < size; ++i)
@@ -103,7 +102,7 @@ double NeuralNetwork::dot_product(double* x, double* y, int size)
 }
 
 // Only 1 case
-void NeuralNetwork::fowardpropagate(double* pattern)
+void NeuralNetwork::fowardpropagate(const double* pattern)
 {
 	for (int i = 0; i < n_input; ++i)
 		input_neurons_output[i] = pattern[i];
@@ -129,7 +128,7 @@ void NeuralNetwork::fowardpropagate(double* pattern)
 	}
 }
 
-void NeuralNetwork::backpropagate(double* desired)
+void NeuralNetwork::backpropagate(const double* desired)
 {
 	// Output -> Hidden
 	for (int i = 0; i < n_output; ++i)
@@ -174,7 +173,7 @@ void NeuralNetwork::update_weights()
 	}
 }
 
-bool NeuralNetwork::train_iteration(const DataReader d, int num_cases)
+bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 {
 	for (int i = 0; i < num_cases; ++i)
 	{
@@ -198,7 +197,15 @@ bool NeuralNetwork::train_iteration(const DataReader d, int num_cases)
 	}
 }
 
-void NeuralNetwork::train_network()
+void NeuralNetwork::train_network(const DataReader d)
 {
-
+	for (int i = 0; i < max_iter; ++i)
+	{
+		train_iteration(d, 500);
+		for (int j = 0; j < n_output; ++j)
+		{
+			std::cout << output_neutons_output[j] << std::endl;
+			std::cout << "error " << output_error[j] << std::endl;
+		}
+	}
 }

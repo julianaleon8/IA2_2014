@@ -9,10 +9,10 @@ class DataReader {
 public:
 	double patternX[NUM_CASES];
 	double patternY[NUM_CASES];
-	
+
 	double target[NUM_CASES];
 
-	
+
 
 public:
 

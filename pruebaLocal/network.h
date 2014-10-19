@@ -8,7 +8,6 @@ private:
 	int n_output;
 
 	double learning_rate = 0.01;
-	double momentum = 0.9;
 	int max_iter = 1500;
 
 	// These store the output
@@ -27,19 +26,19 @@ private:
 	double** delta_hidden_to_output;
 
 	void init_weights();
-	double sigma(double);
-	double dev_sigma(double);
-	void fowardpropagate(double*);
-	double dot_product(double*, double*, int);
+	double sigma(const double);
+	double dev_sigma(const double);
+	void fowardpropagate(const double*);
+	double dot_product(const double*, const double*, const int);
 	void update_weights();
-	bool train_iteration(DataReader, int);
+	bool train_iteration(const DataReader, const int);
 
 
 public:
 	NeuralNetwork(int, int, int);
-	void set_training_parameter(double, double, int);
+	void set_training_parameter(double, int);
 	~NeuralNetwork();
-	void backpropagate(double*);
+	void backpropagate(const double*);
 
-	void train_network();
+	void train_network(const DataReader);
 };
