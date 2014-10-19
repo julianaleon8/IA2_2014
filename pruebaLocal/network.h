@@ -32,6 +32,7 @@ private:
 	double dot_product(const double*, const double*, const int);
 	void update_weights();
 	bool train_iteration(const DataReader, const int);
+	int filter(double);
 
 
 public:

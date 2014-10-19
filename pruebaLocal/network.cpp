@@ -189,12 +189,23 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 
 		for (int i = 0; i < n_output; ++i)
 		{
-			if (output_neutons_output[i] != desired[0])
+			if (filter(output_neutons_output[j]) != desired[j])
 				has_error = true;
 		}
-
-		update_weights();
 	}
+
+	update_weights();
+}
+
+inline int NeuralNetwork::filter( double x )
+{
+
+	if ( x < 0.1 )
+		return 0;
+	else if ( x > 0.9 )
+		return 1;
+	else
+		return -1;
 }
 
 void NeuralNetwork::train_network(const DataReader d)
