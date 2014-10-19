@@ -9,12 +9,12 @@ void NeuralNetwork::init_weights()
 {
 
 	for (int i = 0; i <= n_input; ++i)
-		for (int j = 0; j <= n_hidden; ++j)
+		for (int j = 0; j < n_hidden; ++j)
 			w_input_to_hidden[i][j] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));
 
 	for (int i = 0; i <= n_hidden; ++i)
-		for (int j = 0; j <= n_output; ++j)
-			w_input_to_hidden[i][j] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));
+		for (int j = 0; j < n_output; ++j)
+			w_hidden_to_output[i][j] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));
 }
 
 inline double NeuralNetwork::sigma(const double x)
@@ -133,7 +133,7 @@ void NeuralNetwork::backpropagate(const double* desired)
 	// Output -> Hidden
 	for (int i = 0; i < n_output; ++i)
 	{
-		output_error[i] = (1 - output_neutons_output[i]) * (desired[i] - output_neutons_output[i]);
+		output_error[i] =dev_sigma(output_neutons_output[i]) * (desired[i] - output_neutons_output[i]);
 
 		for (int j = 0; j <= n_hidden; ++j)
 			delta_hidden_to_output[j][i] += learning_rate * hidden_neurons_output[j] * output_error[i];
@@ -143,13 +143,13 @@ void NeuralNetwork::backpropagate(const double* desired)
 	for (int i = 0; i < n_hidden; ++i)
 	{
 		double out = dot_product(w_hidden_to_output[i], output_error, n_output);
-		hidden_error[i] = hidden_neurons_output[i] * (1 - hidden_neurons_output[i]) * out;
+		hidden_error[i] =dev_sigma(hidden_neurons_output[i]) * out;
 
 		for (int j = 0; j <= n_input; ++j)
 			delta_input_to_hidden[j][i] += learning_rate * input_neurons_output[j] * hidden_error[i];
 	}
 
-	update_weights();
+//	update_weights();
 }
 
 void NeuralNetwork::update_weights()
@@ -187,7 +187,7 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 		backpropagate(desired);
 		bool has_error = false;
 
-		for (int i = 0; i < n_output; ++i)
+		for (int j = 0; j < n_output; ++j)
 		{
 			if (filter(output_neutons_output[j]) != desired[j])
 				has_error = true;
