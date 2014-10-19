@@ -7,8 +7,6 @@ void DataReader::loadData(){
 	// Read from file
 	string line;
 	
-	
-	
 	char *sopa = NULL;
 	for (int j = 0 ; j < NUM_CASES; j++){
 		
@@ -24,10 +22,9 @@ void DataReader::loadData(){
 		sopa = strtok (NULL, " ");
 		patternY[j]= atof(sopa);
 		sopa = strtok (NULL, " ");
-		std::cout << atof(sopa) << "target " << endl;
+		//std::cout << atof(sopa) << "target " << endl;
 		target[j]= atof(sopa);
 		
-			
 	}
 }
 

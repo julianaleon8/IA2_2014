@@ -42,4 +42,6 @@ public:
 	void backpropagate(const double*);
 	double test(const DataReader);
 	void train_network(const DataReader);
+double getOutputErrorGradient( double desiredValue, double outputValue);	
+double getHiddenErrorGradient( int j );
 };

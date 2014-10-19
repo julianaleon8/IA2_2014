@@ -7,14 +7,13 @@
 
 void NeuralNetwork::init_weights()
 {
-
 	for (int i = 0; i <= n_input; ++i)
 		for (int j = 0; j < n_hidden; ++j)
-			w_input_to_hidden[i][j] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));
+			w_input_to_hidden[i][j] = 0.2;//static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.2));
 
 	for (int i = 0; i <= n_hidden; ++i)
 		for (int j = 0; j < n_output; ++j)
-			w_hidden_to_output[i][j] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));
+			w_hidden_to_output[i][j] = 0.2;//static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.2));
 }
 
 inline double NeuralNetwork::sigma(const double x)
@@ -64,7 +63,7 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 
 NeuralNetwork::~NeuralNetwork()
 {
-	delete[] input_neurons_output;
+	/*delete[] input_neurons_output;
 	delete[] hidden_neurons_output;
 	delete[] output_neurons_output;
 	delete[] hidden_error;
@@ -84,7 +83,7 @@ NeuralNetwork::~NeuralNetwork()
 		delete[] delta_hidden_to_output[i];
 	}
 	delete[] delta_hidden_to_output;
-	delete[] w_hidden_to_output;
+	delete[] w_hidden_to_output;*/
 }
 
 void NeuralNetwork::set_training_parameter(double lr, int iter)
@@ -111,6 +110,7 @@ void NeuralNetwork::fowardpropagate(const double* pattern)
 	for (int i = 0; i < n_hidden; ++i)
 	{
 		hidden_neurons_output[i] = 0;
+		
 		for (int j = 0; j <= n_input; ++j)
 			hidden_neurons_output[i] += input_neurons_output[j] * w_input_to_hidden[j][i];
 
@@ -123,7 +123,9 @@ void NeuralNetwork::fowardpropagate(const double* pattern)
 		output_neurons_output[i] = 0;
 		for (int j = 0; j <= n_hidden; ++j)
 			output_neurons_output[i] = hidden_neurons_output[j] * w_hidden_to_output[j][i];
-
+		
+		std::cout << "output_neurons_output[i] " << output_neurons_output[i] << std::endl;
+		char c; std::cin >> c;
 		output_neurons_output[i] = sigma(output_neurons_output[i]);
 	}
 }
@@ -133,8 +135,12 @@ void NeuralNetwork::backpropagate(const double* desired)
 	// Output -> Hidden
 	for (int i = 0; i < n_output; ++i)
 	{
-		output_error[i] =dev_sigma(output_neurons_output[i]) * (desired[i] - output_neurons_output[i]);
-
+		output_error[i] = dev_sigma(output_neurons_output[i]) * (desired[i] - output_neurons_output[i]);
+		//	std::cout << "desired[i] " << desired[i] << std::endl;
+		//	std::cout << "output_neurons_output[i] " << output_neurons_output[i] << std::endl;
+		std::cout << "output_error[i] " << output_error[i] << std::endl;
+		char c; std::cin >> c;
+		
 		for (int j = 0; j <= n_hidden; ++j)
 			delta_hidden_to_output[j][i] += learning_rate * hidden_neurons_output[j] * output_error[i];
 	}
@@ -143,8 +149,11 @@ void NeuralNetwork::backpropagate(const double* desired)
 	for (int i = 0; i < n_hidden; ++i)
 	{
 		double out = dot_product(w_hidden_to_output[i], output_error, n_output);
-		hidden_error[i] =dev_sigma(hidden_neurons_output[i]) * out;
-
+		hidden_error[i] = dev_sigma(hidden_neurons_output[i]) * out;
+		
+		std::cout << "hidden_error[i] " << hidden_error[i] << std::endl;
+		char c; std::cin >> c;
+		
 		for (int j = 0; j <= n_input; ++j)
 			delta_input_to_hidden[j][i] += learning_rate * input_neurons_output[j] * hidden_error[i];
 	}
@@ -157,15 +166,20 @@ void NeuralNetwork::update_weights()
 	{
 		for (int j = 0; j < n_hidden; ++j)
 		{
+		//	std::cout << "w_Input_Hidden " << delta_input_to_hidden[i][j] << std::endl;
+			//char c; std::cin >> c;
 			w_input_to_hidden[i][j] += delta_input_to_hidden[i][j];
 			delta_input_to_hidden[i][j] = 0;
 		}
 	}
-
+		
+	
 	for (int i = 0; i <= n_hidden; ++i)
 	{
 		for (int j = 0; j < n_output; ++j)
 		{
+		//	std::cout << "w_Hidden_Output " << delta_hidden_to_output[i][j] << std::endl;
+		//	char c; std::cin >> c;
 			w_hidden_to_output[i][j] += delta_hidden_to_output[i][j];
 			delta_hidden_to_output[i][j] = 0;
 		}
@@ -174,6 +188,8 @@ void NeuralNetwork::update_weights()
 
 bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 {
+	bool has_error = false;
+	
 	for (int i = 0; i < num_cases; ++i)
 	{
 		double input[2];
@@ -182,23 +198,24 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 
 		double desired[1];
 		desired[0] = d.target[i];
+		
 		fowardpropagate(input);
 		backpropagate(desired);
-		bool has_error = false;
-
+		
 		for (int j = 0; j < n_output; ++j)
 		{
-			if (filter(output_neurons_output[j]) != desired[j])
+			if (filter(output_neurons_output[j]) != desired[j]) 
 				has_error = true;
 		}
 	}
-
+	
 	update_weights();
+	
+	return has_error;
 }
 
 inline int NeuralNetwork::filter( double x )
 {
-
 	if ( x < 0.1 )
 		return 0;
 	else if ( x > 0.9 )
@@ -211,7 +228,12 @@ void NeuralNetwork::train_network(const DataReader d)
 {
 	for (int i = 0; i < max_iter; ++i)
 	{
-		train_iteration(d, 4);
+		bool b = train_iteration(d, 4);
+		if (!b){
+			std::cout << "Pare en " << i << std::endl;
+			return;
+		}
+			
 		for (int j = 0; j < n_output; ++j)
 		{
 			std::cout << output_neurons_output[j] << std::endl;
@@ -226,7 +248,7 @@ double NeuralNetwork::test( const DataReader d )
 	double incorrectResults = 0;
 		
 	//for every training input array
-	for ( int i = 0; i < 4; i++)
+	for ( int i = 0; i < 4; ++i)
 	{						
 		double input[2];
 		input[0] = d.patternX[i];
@@ -237,14 +259,11 @@ double NeuralNetwork::test( const DataReader d )
 		//feed inputs through network and backpropagate errors
 		fowardpropagate( input );
 		
-	
 		bool correctResult = true;
 
 	
-		for ( int k = 0; k < n_output; k++ )
+		for ( int k = 0; k < n_output; ++k)
 		{
-			
-	
 			if ( filter(output_neurons_output[k]) != desired[k])
 				 correctResult = false;
 		}
