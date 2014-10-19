@@ -123,7 +123,9 @@ void NeuralNetwork::fowardpropagate(const double* pattern)
 		output_neurons_output[i] = 0;
 		for (int j = 0; j <= n_hidden; ++j)
 			output_neurons_output[i] = hidden_neurons_output[j] * w_hidden_to_output[j][i];
-
+		
+		std::cout << "output_neurons_output[i] " << output_neurons_output[i] << std::endl;
+		char c; std::cin >> c;
 		output_neurons_output[i] = sigma(output_neurons_output[i]);
 	}
 }
@@ -134,7 +136,7 @@ void NeuralNetwork::backpropagate(const double* desired)
 	for (int i = 0; i < n_output; ++i)
 	{
 		output_error[i] = dev_sigma(output_neurons_output[i]) * (desired[i] - output_neurons_output[i]);
-	//	std::cout << "desired[i] " << desired[i] << std::endl;
+		//	std::cout << "desired[i] " << desired[i] << std::endl;
 		//	std::cout << "output_neurons_output[i] " << output_neurons_output[i] << std::endl;
 		std::cout << "output_error[i] " << output_error[i] << std::endl;
 		char c; std::cin >> c;
