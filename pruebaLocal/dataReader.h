@@ -16,6 +16,6 @@ public:
 
 public:
 
-	void loadData(std::ifstream );
+	void loadData( );
 
 };

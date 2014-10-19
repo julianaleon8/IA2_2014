@@ -1,9 +1,9 @@
 #include "dataReader.h"
 
 using namespace std;
-void DataReader::loadData(std::ifstream file){
+void DataReader::loadData(){
 // File input for the training examples
-	std::ifstream input( "Datos/datos_P1_2_SD2014_n500.txt" );
+	std::ifstream input( "datos_P1_2_SD2014_n500.txt" );
 	// Read from file
 	string line;
 	
@@ -29,3 +29,8 @@ void DataReader::loadData(std::ifstream file){
 	}
 }
 
+
+
+
+		
+	   
