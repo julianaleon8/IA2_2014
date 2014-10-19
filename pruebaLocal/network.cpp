@@ -202,6 +202,18 @@ inline int NeuralNetwork::filter( double x )
 		return 1;
 	else
 		return -1;
+
+	/*if (x > 1.5)
+		return 3;
+	else if (x < -1.5)
+		return -3;
+	else
+		return 0;
+	 
+	 * si > 1.5 -> 3
+	 * si < -1.5 -> -3
+	 * else 0
+	*/
 }
 
 void NeuralNetwork::train_network(const DataReader d)
