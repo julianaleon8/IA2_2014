@@ -31,7 +31,7 @@ int main (int argc, char* argv[])
 
 	srand (static_cast <unsigned> (time(0)));
 
-	NeuralNetwork b = NeuralNetwork(numV, 4, numD);
+	NeuralNetwork b = NeuralNetwork(numV, 10, numD);
 	b.train_network(a);
 	cout << "End training" << endl;
 
