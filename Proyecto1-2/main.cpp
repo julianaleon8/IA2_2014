@@ -1,53 +1,46 @@
-/*
-* 08-10608 Juliana Leon
-* 09-10855 Karen Troiano
-* 09-10203 Stefano De Colli
-*/
-
-using namespace std;
-
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
 #include <string.h>
 #include <vector>
 #include <stdlib.h>
-//#include <boost/foreach.hpp>
+#include "network.h"
+using namespace std;
+int main (int argc, char* argv[])
+{
+	// argv[1] is filemame
+	// argv[2] is numbers of cases
+	// argv[3] is numbers of pattern's
+	// argv[4] is numbers of desired
+	// argv[5] is filename to test against
+	// argv[6] is number of tests
+	//cout << "prin" << argv[4];
 
-#define NUM_CASES 500
+	if (argc > 6) {
+	DataReader a;
+	DataReader c;
 
+	int numCases = atof(argv[2]);
+	int numV = atof(argv[3]);
+	int numD = atof(argv[4]);
 
-int main(){
-	// File input for the training examples
-	std::ifstream input( "Datos/datos_P1_2_SD2014_n500.txt" );
-	// Read from file
-	string line;
+	int numTestCases = atof(argv[6]);
 
+	a.DataReader::loadData(argv[1], numCases, numV, numD);
+	c.DataReader::loadData(argv[5], numTestCases, numV, numD);
 
-	vector< vector<float> > examples;
+	srand (static_cast <unsigned> (time(0)));
 
-	vector<float> example(4);
-	char *sopa = NULL;
-	for (int j = 0 ; j < NUM_CASES; j++){
-		
-		getline( input, line);
-		
-		char *aux = new char[line.length() + 1];
-		strcpy(aux, line.c_str());
-		//cout << aux << endl;
-		sopa = strtok(aux, " ");
-		
-		example[0] = 1.0;
-		example[1]= atof(sopa);	
-		sopa = strtok (NULL, " ");
-		example[2]= atof(sopa);
-		sopa = strtok (NULL, " ");
-		example[3]= atof(sopa);	
-		
-		
-		examples.push_back(example);
-		cout << examples[j][0] << "    "<< examples[j][1] << "    "<< examples[j][2] << endl;
+	NeuralNetwork b = NeuralNetwork(numV, 2, numD);
+	cout << "End training" << endl;
+	b.train_network(a);
 
+	double acc = b.test(c);
+
+	std::cout << acc << " test"<< std::endl;
 	}
-
+	else {
+		cout << "parametros Incorrectos " << endl;
+		return 1;
+	}
 }

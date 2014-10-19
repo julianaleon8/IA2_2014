@@ -186,7 +186,7 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 
 		for (int j = 0; j < n_output; ++j)
 		{
-			if (filter(output_neurons_output[j]) != d.target[i][j])
+			if (output_neurons_output[j] != d.target[i][j])
 				has_error = true;
 		}
 	}
@@ -230,7 +230,7 @@ double NeuralNetwork::test(const DataReader d)
 
 		for ( int k = 0; k < n_output; ++k)
 		{
-			if (filter(output_neurons_output[k]) != d.target[i][k])
+			if (output_neurons_output[k] != d.target[i][k])
 				 correct = false;
 		}
 
@@ -242,7 +242,7 @@ double NeuralNetwork::test(const DataReader d)
 			std::cout << d.pattern[i][n_in] << ',';
 		}
 
-		std::cout << filter(output_neurons_output[0]) << std::endl;
+		std::cout << output_neurons_output[0] << std::endl;
 
 	}
 
