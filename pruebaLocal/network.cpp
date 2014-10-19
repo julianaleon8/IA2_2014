@@ -201,7 +201,7 @@ void NeuralNetwork::train_network(const DataReader d)
 {
 	for (int i = 0; i < max_iter; ++i)
 	{
-		train_iteration(d, 500);
+		train_iteration(d, 4);
 		for (int j = 0; j < n_output; ++j)
 		{
 			std::cout << output_neutons_output[j] << std::endl;
