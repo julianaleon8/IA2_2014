@@ -20,18 +20,21 @@
 	"buffers":
 	[
 		{
+			"contents": "#include \"backpropagation.h\"\n\nusing namespace std;\n\ninline float Backpropagation::dot_product(vector<float> input_layer,float *w) \n{\n	float res = 0;\n	for (int i = 0; i < 3; ++i)\n		res += input_layer[i] * w[i];\n	return res;\n}\n\n\ninline float Backpropagation::sigma(float x) \n{\n	return 1 / (1 + exp(-x));\n}\n\ninline float Backpropagation::dev_sigma(float x)\n{\n	return x * (1 - x);\n}dot_product(*it, weights[0][0]);\n\nvoid Backpropagation::train(vector< vector<float> > examples, float learning_rate)\n{\n	\n	vector<float> in; \n	float ini = 0.0;\n	for (;;)\n	{\n		for (std::vector< vector<float> >::iterator it = examples.begin() ; it != examples.end(); ++it)\n		{\n				\n			float actual_output = dot_product(*it, weights[1][0]);\n			float res = sigma(actual_output);\n			float o = res * (1 - res);\n			float error = *it[3] - res;\n\n			float delta[3] = {0.0, 0.0, 0.0};\n			for (int j = 0; j < 3; ++j)\n				delta[j] += learning_rate * o * (*it[j]) * error;\n\n			weights[1][0][0] += delta[0];\n			weights[1][0][1] += delta[1];\n			weights[1][0][2] += delta[2];\n\n\n			/*ini = dot_product(*it, weights[1][0]);\n			in.push_back(ini);\n			\n			ini = dot_product(*it, weights[0][1]);\n			in.push_back(ini);\n\n			float delta[3] = {0.0, 0.0, 0.0};\n\n			delta[0] = 1.0;\n			delta[1] = dev_sigma(in[0]) * (*it[3] - sigma(in[0]));\n			delta[2] = dev_sigma(in[1]) * (*it[3] - sigma(in[1]));*/\n\n		}\n\n	}\n}\n\nvoid Backpropagation::test(vector< vector<float> > examples)\n{\n\n}\n\n\nBackpropagation::Backpropagation(){\n	\n	srand (static_cast <unsigned> (time(0)));\n	weights[0][0][0] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	weights[0][0][1] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	weights[0][0][2] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	weights[0][1][0] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	weights[0][1][1] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	weights[0][1][2] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	weights[1][0][0] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	weights[1][0][1] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	weights[1][0][2] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	//weights[1][1][0] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	//weights[1][1][1] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	//weights[1][1][2] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.5));\n	\n}\n",
 			"file": "Proyecto1-2/backpropagation.cpp",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 2137,
+				"buffer_size": 2587,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Proyecto1-2/backpropagation.h",
+			"file": "pruebaLocal/main.cpp",
 			"settings":
 			{
-				"buffer_size": 404,
+				"buffer_size": 998,
 				"line_ending": "Unix"
 			}
 		}
@@ -72,9 +75,10 @@
 	},
 	"file_history":
 	[
-		"/home/stefano/git/IA2_2014/Proyecto1-2/main.cpp",
-		"/home/stefano/git/IA2_2014/Proyecto1-1/or-delta.cpp",
 		"/home/stefano/git/IA2_2014/Proyecto1-2/backpropagation.h",
+		"/home/stefano/git/IA2_2014/Proyecto1-2/main.cpp",
+		"/home/stefano/git/IA2_2014/Proyecto1-1/xor-delta.cpp",
+		"/home/stefano/git/IA2_2014/Proyecto1-1/or-delta.cpp",
 		"/home/stefano/git/IA2_2014/Proyecto1-2/case_generator.py",
 		"/home/stefano/git/IA2_2014/Proyecto1-2/backpropagation.cpp",
 		"/home/stefano/git/vma/cronjobs/catalog2.js",
@@ -145,6 +149,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"double",
 			"buildProduct",
 			"displayName",
 			"console.log",
@@ -185,7 +190,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -194,15 +199,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2137,
+						"buffer_size": 2587,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								304,
-								304
+								1171,
+								1171
 							]
 						],
 						"settings":
@@ -266,100 +271,101 @@
 								"bh_tag_close",
 								"bh_tag_content"
 							],
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": -0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Proyecto1-2/backpropagation.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 404,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
-							],
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "pruebaLocal/main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 998,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								793,
+								793
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
