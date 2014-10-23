@@ -34,7 +34,7 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 
 	input_neurons_output = new double[n_input + 1]();
 	hidden_neurons_output = new double[n_hidden + 1]();
-	output_neurons_output = new double[n_output]();
+	output_neurons_output = new double[n_output + 1]();
 
 	hidden_error = new double[n_hidden + 1]();
 	output_error = new double[n_output + 1]();
@@ -44,6 +44,7 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 
 	w_input_to_hidden = new double*[n_input + 1]();
 	delta_input_to_hidden = new double*[n_input + 1]();
+
 	for (int i = 0; i <= n_input; ++i)
 	{
 		w_input_to_hidden[i] = new double[n_hidden]();
@@ -54,8 +55,8 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 	delta_hidden_to_output = new double*[n_hidden + 1]();
 	for (int i = 0; i <= n_hidden; ++i)
 	{
-		w_hidden_to_output[i] = new double[n_output]();
-		delta_hidden_to_output[i] = new double[n_output]();
+		w_hidden_to_output[i] = new double[n_output + 1]();
+		delta_hidden_to_output[i] = new double[n_output + 1]();
 	}
 
 	init_weights();
@@ -198,18 +199,18 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 
 inline int NeuralNetwork::filter( double x )
 {
-	if ( x > 0.5 )
+	/*if ( x > 0.5 )
 		return 1;
 	else
 		return -1;
-
-	/*if (x > 1.5)
-		return 3;
-	else if (x < -1.5)
-		return -3;
+*/
+	if (x > 0.5)
+		return 1;
+	else if (x < -0.5)
+		return -1;
 	else
 		return 0;
-	 
+	 /*
 	 * si > 1.5 -> 3
 	 * si < -1.5 -> -3
 	 * else 0
@@ -236,7 +237,6 @@ double NeuralNetwork::test(const DataReader d)
 		fowardpropagate(d.pattern[i]);
 
 		bool correct = true;
-
 
 		for ( int k = 0; k < n_output; ++k)
 		{

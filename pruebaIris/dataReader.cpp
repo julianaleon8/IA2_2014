@@ -19,7 +19,9 @@ void DataReader::loadData( const char* file,int numCases, int numVariables, int 
 
 	num_cases = numCases;
 
-	for (int j = 0 ; j < numCases; j++){
+	for (int j = 0 ; j < numCases; j++)
+	{
+		
 
 		getline( input, line);
 
@@ -30,14 +32,17 @@ void DataReader::loadData( const char* file,int numCases, int numVariables, int 
 		for (int i = 0 ; i < numVariables ; i++){
 			pattern[j][i]= atof(sopa);
 			sopa = strtok (NULL, " ");
+			
 		}
 
 		for (int i = 0 ; i < numDesired ; i++){
+			if (sopa == NULL) {
+				break;
+			}
 			target[j][i] = atof(sopa);
 			sopa = strtok (NULL, " ");
 		}
-
-
+		
 		delete[] aux;
 	}
 }
