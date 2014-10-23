@@ -28,9 +28,7 @@ int main (int argc, char* argv[])
 
 	int numTestCases = atof(argv[6]);
 	a.DataReader::loadData(argv[1], numCases, numV, numD);
-	cout << "4" << endl;
 	c.DataReader::loadData(argv[5], numTestCases, numV, numD);
-	cout << "5" << endl;
 	srand (static_cast <unsigned> (time(0)));
 
 	cout << "Start training" << endl;

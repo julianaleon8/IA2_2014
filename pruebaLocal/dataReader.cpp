@@ -3,7 +3,7 @@
 using namespace std;
 void DataReader::loadData( const char* file,int numCases, int numVariables, int numDesired) {
 // File input for the training examples
-	std::ifstream input( file );
+	std::ifstream input(file);
 	// Read from file
 	string line;
 
@@ -27,14 +27,20 @@ void DataReader::loadData( const char* file,int numCases, int numVariables, int 
 		strcpy(aux, line.c_str());
 		sopa = strtok(aux, " ");
 
-		for (int i = 0 ; i < numVariables ; i++){
-			pattern[j][i]= atof(sopa);
-			sopa = strtok (NULL, " ");
+		for (int i = 0 ; i < numVariables ; ++i){
+			if (sopa != 0)
+			{
+				pattern[j][i]= atof(sopa);
+				sopa = strtok (NULL, " ");
+			}
 		}
 
-		for (int i = 0 ; i < numDesired ; i++){
-			target[j][i] = atof(sopa);
-			sopa = strtok (NULL, " ");
+		for (int i = 0 ; i < numDesired ; ++i){
+			if (sopa != 0)
+			{
+				target[j][i] = atof(sopa);
+				sopa = strtok (NULL, " ");
+			}
 		}
 
 

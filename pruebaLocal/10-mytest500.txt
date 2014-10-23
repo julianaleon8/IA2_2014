@@ -1,3 +1,4 @@
+Start training
 End training
 0,0,-1
 0,0.2,-1
@@ -10200,4 +10201,4 @@ End training
 20,19.6,-1
 20,19.8,-1
 20,20,-1
-62.2292 test
+62.2292% test
