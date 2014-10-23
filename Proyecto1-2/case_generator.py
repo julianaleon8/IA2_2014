@@ -23,6 +23,8 @@ limit = int(num_cases) / 2
 not_in = 0
 _in = 0
 
+random.seed()
+
 myfile = open('my_data' + num_cases, 'w')
 
 for _ in range(int(num_cases)):

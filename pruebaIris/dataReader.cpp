@@ -2,6 +2,7 @@
 
 using namespace std;
 void DataReader::loadData( const char* file,int numCases, int numVariables, int numDesired) {
+
 // File input for the training examples
 	std::ifstream input( file );
 	// Read from file
@@ -17,7 +18,6 @@ void DataReader::loadData( const char* file,int numCases, int numVariables, int 
 	char *sopa = NULL;
 
 	num_cases = numCases;
-
 
 	for (int j = 0 ; j < numCases; j++){
 
