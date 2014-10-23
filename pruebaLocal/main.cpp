@@ -31,10 +31,10 @@ int main (int argc, char* argv[])
 	c.DataReader::loadData(argv[5], numTestCases, numV, numD);
 	srand (static_cast <unsigned> (time(0)));
 
-	cout << "Start training" << endl;
+	//cout << "Start training" << endl;
 	NeuralNetwork b = NeuralNetwork(numV, numN, numD);
 	b.train_network(a);
-	cout << "End training" << endl;
+	//cout << "End training" << endl;
 
 	double acc = b.test(c);
 

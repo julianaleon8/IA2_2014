@@ -27,7 +27,8 @@ random.seed()
 
 myfile = open('my_data' + num_cases, 'w')
 
-for _ in range(int(num_cases)):
+my_num = int(num_cases)
+while (my_num != (not_in + _in)):
 	x = random.uniform(0.0, 20.0)
 	y = random.uniform(0.0, 20.0)
 	res = isInCircle(x, y)

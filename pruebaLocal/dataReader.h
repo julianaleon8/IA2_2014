@@ -13,6 +13,7 @@ public:
 	double** target;
 public:
 
-	void loadData(const char* , int ,int , int );
-
+	void loadData(const char*, int, int, int );
+	void printPatterns(int);
+	void printTargets(int);
 };

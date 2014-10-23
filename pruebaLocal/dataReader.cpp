@@ -1,7 +1,7 @@
 #include "dataReader.h"
 
 using namespace std;
-void DataReader::loadData( const char* file,int numCases, int numVariables, int numDesired) {
+void DataReader::loadData( const char* file, int numCases, int numVariables, int numDesired) {
 // File input for the training examples
 	std::ifstream input(file);
 	// Read from file
@@ -19,9 +19,9 @@ void DataReader::loadData( const char* file,int numCases, int numVariables, int 
 	num_cases = numCases;
 
 
-	for (int j = 0 ; j < numCases; j++){
+	for (int j = 0 ; j < numCases; j++) {
 
-		getline( input, line);
+		getline(input, line);
 
 		char *aux = new char[line.length() + 1];
 		strcpy(aux, line.c_str());
@@ -46,10 +46,35 @@ void DataReader::loadData( const char* file,int numCases, int numVariables, int 
 
 		delete[] aux;
 	}
+
+	//printPatterns(numVariables);
+	//printTargets(numDesired);
 }
 
+void DataReader::printPatterns(int numInput)
+{
+	cout << "Input: \n";
+	for (int i = 0; i < num_cases; ++i)
+	{
+		for (int j = 0; j < numInput; ++j)
+		{
+			cout << pattern[i][j] << ' ';
+		}
 
+		cout << endl;
+	}
+}
 
+void DataReader::printTargets(int numOutput)
+{
+	cout << "Outputs: \n";
+	for (int i = 0; i < num_cases; ++i)
+	{
+		for (int j = 0; j < numOutput; ++j)
+		{
+			cout << target[i][j] << ' ';
+		}
 
-
-
+		cout << endl;
+	}
+}
