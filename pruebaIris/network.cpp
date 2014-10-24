@@ -133,18 +133,17 @@ void NeuralNetwork::fowardpropagate(const double* pattern)
 void NeuralNetwork::backpropagate(const double* desired)
 {
 	// Output -> Hidden
-	double sum_error = 0;
+	
 	for (int i = 0; i < n_output; ++i)
 	{
 		output_error[i] = dev_sigma(output_neurons_output[i]) * (desired[i] - output_neurons_output[i]);
 	
-		sum_error += output_error[i] * output_error[i] ;
+		sum_error +=  output_error[i] * output_error[i] ;
 		
 		for (int j = 0; j <= n_hidden; ++j)
 			delta_hidden_to_output[j][i] += learning_rate * hidden_neurons_output[j] * output_error[i];
 	}
-
-	std::cout << sum_error << std::endl;
+	
 	// Hidden -> Input
 	for (int i = 0; i < n_hidden; ++i)
 	{
@@ -195,6 +194,9 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 				has_error = true;
 		}
 	}
+	
+	std::cout << sum_error * 0.5 << std::endl;
+	sum_error = 0;
 
 	update_weights();
 
@@ -225,7 +227,7 @@ void NeuralNetwork::train_network(const DataReader d)
 {
 	for (int i = 0; i < max_iter; ++i)
 	{
-
+		std::cout << "Iteriacion # " << i << " : ";
 		bool b = train_iteration(d, d.num_cases);
 		if (!b)
 			return;
