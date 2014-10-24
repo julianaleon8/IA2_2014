@@ -216,7 +216,8 @@ inline int NeuralNetwork::filter( double x )
 		return -1;
 	else
 		return 0;
-	*/ /*
+	*/ 
+/*
 	 * si > 1.5 -> 3
 	 * si < -1.5 -> -3
 	 * else 0
@@ -227,7 +228,7 @@ void NeuralNetwork::train_network(const DataReader d)
 {
 	for (int i = 0; i < max_iter; ++i)
 	{
-		std::cout << "Iteriacion # " << i << " : ";
+	//	std::cout << "Iteriacion # " << i << " : ";
 		bool b = train_iteration(d, d.num_cases);
 		if (!b)
 			return;
