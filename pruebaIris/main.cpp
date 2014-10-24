@@ -33,7 +33,7 @@ int main (int argc, char* argv[])
 	srand (static_cast <unsigned> (time(0)));
 
 	
-	NeuralNetwork b = NeuralNetwork(numV, 10, numD);
+	NeuralNetwork b = NeuralNetwork(numV, 7, numD);
 
 	b.train_network(a);
 
