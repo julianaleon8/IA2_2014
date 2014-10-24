@@ -9,6 +9,7 @@ private:
 
 	double learning_rate = 0.01;
 	int max_iter = 1000000;
+	double sum_error = 0;
 
 	// These store the output
 	double* input_neurons_output;
