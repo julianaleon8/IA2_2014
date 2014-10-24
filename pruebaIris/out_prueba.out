@@ -1,152 +1,452 @@
 End training
-5.1,3.5,1.4,0.2,0
-4.9,3,1.4,0.2,0
-4.7,3.2,1.3,0.2,0
-4.6,3.1,1.5,0.2,0
-5,3.6,1.4,0.2,0
-5.4,3.9,1.7,0.4,0
-4.6,3.4,1.4,0.3,0
-5,3.4,1.5,0.2,0
-4.4,2.9,1.4,0.2,0
-4.9,3.1,1.5,0.1,0
-5.4,3.7,1.5,0.2,0
-4.8,3.4,1.6,0.2,0
-4.8,3,1.4,0.1,0
-4.3,3,1.1,0.1,0
-5.8,4,1.2,0.2,0
-5.7,4.4,1.5,0.4,0
-5.4,3.9,1.3,0.4,0
-5.1,3.5,1.4,0.3,0
-5.7,3.8,1.7,0.3,0
-5.1,3.8,1.5,0.3,0
-5.4,3.4,1.7,0.2,0
-5.1,3.7,1.5,0.4,0
-4.6,3.6,1,0.2,0
-5.1,3.3,1.7,0.5,0
-4.8,3.4,1.9,0.2,0
-5,3,1.6,0.2,0
-5,3.4,1.6,0.4,0
-5.2,3.5,1.5,0.2,0
-5.2,3.4,1.4,0.2,0
-4.7,3.2,1.6,0.2,0
-4.8,3.1,1.6,0.2,0
-5.4,3.4,1.5,0.4,0
-5.2,4.1,1.5,0.1,0
-5.5,4.2,1.4,0.2,0
-4.9,3.1,1.5,0.2,0
-5,3.2,1.2,0.2,0
-5.5,3.5,1.3,0.2,0
-4.9,3.6,1.4,0.1,0
-4.4,3,1.3,0.2,0
-5.1,3.4,1.5,0.2,0
-5,3.5,1.3,0.3,0
-4.5,2.3,1.3,0.3,0
-4.4,3.2,1.3,0.2,0
-5,3.5,1.6,0.6,0
-5.1,3.8,1.9,0.4,0
-4.8,3,1.4,0.3,0
-5.1,3.8,1.6,0.2,0
-4.6,3.2,1.4,0.2,0
-5.3,3.7,1.5,0.2,0
-5,3.3,1.4,0.2,0
-7,3.2,4.7,1.4,0
-6.4,3.2,4.5,1.5,0
-6.9,3.1,4.9,1.5,0
-5.5,2.3,4,1.3,0
-6.5,2.8,4.6,1.5,0
-5.7,2.8,4.5,1.3,0
-6.3,3.3,4.7,1.6,0
-4.9,2.4,3.3,1,0
-6.6,2.9,4.6,1.3,0
-5.2,2.7,3.9,1.4,0
-5,2,3.5,1,0
-5.9,3,4.2,1.5,0
-6,2.2,4,1,0
-6.1,2.9,4.7,1.4,0
-5.6,2.9,3.6,1.3,0
-6.7,3.1,4.4,1.4,0
-5.6,3,4.5,1.5,0
-5.8,2.7,4.1,1,0
-6.2,2.2,4.5,1.5,0
-5.6,2.5,3.9,1.1,0
-5.9,3.2,4.8,1.8,0
-6.1,2.8,4,1.3,0
-6.3,2.5,4.9,1.5,0
-6.1,2.8,4.7,1.2,0
-6.4,2.9,4.3,1.3,0
-6.6,3,4.4,1.4,0
-6.8,2.8,4.8,1.4,0
-6.7,3,5,1.7,0
-6,2.9,4.5,1.5,0
-5.7,2.6,3.5,1,0
-5.5,2.4,3.8,1.1,0
-5.5,2.4,3.7,1,0
-5.8,2.7,3.9,1.2,0
-6,2.7,5.1,1.6,1
-5.4,3,4.5,1.5,0
-6,3.4,4.5,1.6,0
-6.7,3.1,4.7,1.5,0
-6.3,2.3,4.4,1.3,0
-5.6,3,4.1,1.3,0
-5.5,2.5,4,1.3,0
-5.5,2.6,4.4,1.2,0
-6.1,3,4.6,1.4,0
-5.8,2.6,4,1.2,0
-5,2.3,3.3,1,0
-5.6,2.7,4.2,1.3,0
-5.7,3,4.2,1.2,0
-5.7,2.9,4.2,1.3,0
-6.2,2.9,4.3,1.3,0
-5.1,2.5,3,1.1,0
-5.7,2.8,4.1,1.3,0
-6.3,3.3,6,2.5,1
-5.8,2.7,5.1,1.9,1
-7.1,3,5.9,2.1,1
-6.3,2.9,5.6,1.8,1
-6.5,3,5.8,2.2,1
-7.6,3,6.6,2.1,1
-4.9,2.5,4.5,1.7,1
-7.3,2.9,6.3,1.8,1
-6.7,2.5,5.8,1.8,1
-7.2,3.6,6.1,2.5,1
-6.5,3.2,5.1,2,1
-6.4,2.7,5.3,1.9,1
-6.8,3,5.5,2.1,1
-5.7,2.5,5,2,1
-5.8,2.8,5.1,2.4,1
-6.4,3.2,5.3,2.3,1
-6.5,3,5.5,1.8,1
-7.7,3.8,6.7,2.2,1
-7.7,2.6,6.9,2.3,1
-6,2.2,5,1.5,1
-6.9,3.2,5.7,2.3,1
-5.6,2.8,4.9,2,1
-7.7,2.8,6.7,2,1
-6.3,2.7,4.9,1.8,1
-6.7,3.3,5.7,2.1,1
-7.2,3.2,6,1.8,1
-6.2,2.8,4.8,1.8,1
-6.1,3,4.9,1.8,1
-6.4,2.8,5.6,2.1,1
-7.2,3,5.8,1.6,0
-7.4,2.8,6.1,1.9,1
-7.9,3.8,6.4,2,0
-6.4,2.8,5.6,2.2,1
-6.3,2.8,5.1,1.5,0
-6.1,2.6,5.6,1.4,1
-7.7,3,6.1,2.3,1
-6.3,3.4,5.6,2.4,1
-6.4,3.1,5.5,1.8,1
-6,3,4.8,1.8,0
-6.9,3.1,5.4,2.1,1
-6.7,3.1,5.6,2.4,1
-6.9,3.1,5.1,2.3,1
-5.8,2.7,5.1,1.9,1
-6.8,3.2,5.9,2.3,1
-6.7,3.3,5.7,2.5,1
-6.7,3,5.2,2.3,1
-6.3,2.5,5,1.9,1
-6.5,3,5.2,2,1
-6.2,3.4,5.4,2.3,1
-5.9,3,5.1,1.8,1
-63.3333 test
+Expected: -1 Got: 0 Actual: 4.03563e-07
+Expected: 0 Got: 0 Actual: 0.000200026
+Expected: 0 Got: 0 Actual: 0.00020013
+5.1,3.5,1.4,0.2,Expected: -1 Got: 0 Actual: 4.27298e-07
+Expected: 0 Got: 0 Actual: 0.000206651
+Expected: 0 Got: 0 Actual: 0.000206877
+4.9,3,1.4,0.2,Expected: -1 Got: 0 Actual: 4.32104e-07
+Expected: 0 Got: 0 Actual: 0.000207971
+Expected: 0 Got: 0 Actual: 0.000208245
+4.7,3.2,1.3,0.2,Expected: -1 Got: 0 Actual: 4.37451e-07
+Expected: 0 Got: 0 Actual: 0.000209429
+Expected: 0 Got: 0 Actual: 0.000209718
+4.6,3.1,1.5,0.2,Expected: -1 Got: 0 Actual: 4.04558e-07
+Expected: 0 Got: 0 Actual: 0.000200306
+Expected: 0 Got: 0 Actual: 0.000200421
+5,3.6,1.4,0.2,Expected: -1 Got: 0 Actual: 3.8236e-07
+Expected: 0 Got: 0 Actual: 0.000193964
+Expected: 0 Got: 0 Actual: 0.000193938
+5.4,3.9,1.7,0.4,Expected: -1 Got: 0 Actual: 4.26814e-07
+Expected: 0 Got: 0 Actual: 0.000206516
+Expected: 0 Got: 0 Actual: 0.000206761
+4.6,3.4,1.4,0.3,Expected: -1 Got: 0 Actual: 4.08541e-07
+Expected: 0 Got: 0 Actual: 0.000201427
+Expected: 0 Got: 0 Actual: 0.000201554
+5,3.4,1.5,0.2,Expected: -1 Got: 0 Actual: 4.61999e-07
+Expected: 0 Got: 0 Actual: 0.000216048
+Expected: 0 Got: 0 Actual: 0.00021648
+4.4,2.9,1.4,0.2,Expected: -1 Got: 0 Actual: 4.22978e-07
+Expected: 0 Got: 0 Actual: 0.000205451
+Expected: 0 Got: 0 Actual: 0.000205654
+4.9,3.1,1.5,0.1,Expected: -1 Got: 0 Actual: 3.88756e-07
+Expected: 0 Got: 0 Actual: 0.000195807
+Expected: 0 Got: 0 Actual: 0.000195822
+5.4,3.7,1.5,0.2,Expected: -1 Got: 0 Actual: 4.15122e-07
+Expected: 0 Got: 0 Actual: 0.000203266
+Expected: 0 Got: 0 Actual: 0.000203431
+4.8,3.4,1.6,0.2,Expected: -1 Got: 0 Actual: 4.33607e-07
+Expected: 0 Got: 0 Actual: 0.000208379
+Expected: 0 Got: 0 Actual: 0.000208646
+4.8,3,1.4,0.1,Expected: -1 Got: 0 Actual: 4.74425e-07
+Expected: 0 Got: 0 Actual: 0.000219342
+Expected: 0 Got: 0 Actual: 0.000219885
+4.3,3,1.1,0.1,Expected: -1 Got: 0 Actual: 3.77174e-07
+Expected: 0 Got: 0 Actual: 0.000192462
+Expected: 0 Got: 0 Actual: 0.000192418
+5.8,4,1.2,0.2,Expected: -1 Got: 0 Actual: 3.7104e-07
+Expected: 0 Got: 0 Actual: 0.000190669
+Expected: 0 Got: 0 Actual: 0.000190586
+5.7,4.4,1.5,0.4,Expected: -1 Got: 0 Actual: 3.85903e-07
+Expected: 0 Got: 0 Actual: 0.000194992
+Expected: 0 Got: 0 Actual: 0.000194999
+5.4,3.9,1.3,0.4,Expected: -1 Got: 0 Actual: 4.02829e-07
+Expected: 0 Got: 0 Actual: 0.000199821
+Expected: 0 Got: 0 Actual: 0.000199919
+5.1,3.5,1.4,0.3,Expected: -1 Got: 0 Actual: 3.77919e-07
+Expected: 0 Got: 0 Actual: 0.000192676
+Expected: 0 Got: 0 Actual: 0.00019262
+5.7,3.8,1.7,0.3,Expected: -1 Got: 0 Actual: 3.94601e-07
+Expected: 0 Got: 0 Actual: 0.000197481
+Expected: 0 Got: 0 Actual: 0.000197536
+5.1,3.8,1.5,0.3,Expected: -1 Got: 0 Actual: 3.92696e-07
+Expected: 0 Got: 0 Actual: 0.000196935
+Expected: 0 Got: 0 Actual: 0.000196958
+5.4,3.4,1.7,0.2,Expected: -1 Got: 0 Actual: 3.96169e-07
+Expected: 0 Got: 0 Actual: 0.000197931
+Expected: 0 Got: 0 Actual: 0.00019799
+5.1,3.7,1.5,0.4,Expected: -1 Got: 0 Actual: 4.28179e-07
+Expected: 0 Got: 0 Actual: 0.000206896
+Expected: 0 Got: 0 Actual: 0.000207183
+4.6,3.6,1,0.2,Expected: -1 Got: 0 Actual: 4.02538e-07
+Expected: 0 Got: 0 Actual: 0.00019974
+Expected: 0 Got: 0 Actual: 0.000199814
+5.1,3.3,1.7,0.5,Expected: -1 Got: 0 Actual: 4.10542e-07
+Expected: 0 Got: 0 Actual: 0.00020198
+Expected: 0 Got: 0 Actual: 0.000202103
+4.8,3.4,1.9,0.2,Expected: -1 Got: 0 Actual: 4.19012e-07
+Expected: 0 Got: 0 Actual: 0.000204354
+Expected: 0 Got: 0 Actual: 0.00020452
+5,3,1.6,0.2,Expected: -1 Got: 0 Actual: 4.05584e-07
+Expected: 0 Got: 0 Actual: 0.000200598
+Expected: 0 Got: 0 Actual: 0.0002007
+5,3.4,1.6,0.4,Expected: -1 Got: 0 Actual: 3.98897e-07
+Expected: 0 Got: 0 Actual: 0.000198703
+Expected: 0 Got: 0 Actual: 0.000198775
+5.2,3.5,1.5,0.2,Expected: -1 Got: 0 Actual: 4.02587e-07
+Expected: 0 Got: 0 Actual: 0.000199751
+Expected: 0 Got: 0 Actual: 0.000199845
+5.2,3.4,1.4,0.2,Expected: -1 Got: 0 Actual: 4.26348e-07
+Expected: 0 Got: 0 Actual: 0.000206381
+Expected: 0 Got: 0 Actual: 0.000206603
+4.7,3.2,1.6,0.2,Expected: -1 Got: 0 Actual: 4.24984e-07
+Expected: 0 Got: 0 Actual: 0.000206006
+Expected: 0 Got: 0 Actual: 0.000206214
+4.8,3.1,1.6,0.2,Expected: -1 Got: 0 Actual: 3.93658e-07
+Expected: 0 Got: 0 Actual: 0.000197217
+Expected: 0 Got: 0 Actual: 0.00019725
+5.4,3.4,1.5,0.4,Expected: -1 Got: 0 Actual: 3.86993e-07
+Expected: 0 Got: 0 Actual: 0.000195296
+Expected: 0 Got: 0 Actual: 0.000195314
+5.2,4.1,1.5,0.1,Expected: -1 Got: 0 Actual: 3.78809e-07
+Expected: 0 Got: 0 Actual: 0.000192934
+Expected: 0 Got: 0 Actual: 0.000192902
+5.5,4.2,1.4,0.2,Expected: -1 Got: 0 Actual: 4.2199e-07
+Expected: 0 Got: 0 Actual: 0.000205181
+Expected: 0 Got: 0 Actual: 0.000205375
+4.9,3.1,1.5,0.2,Expected: -1 Got: 0 Actual: 4.19232e-07
+Expected: 0 Got: 0 Actual: 0.000204422
+Expected: 0 Got: 0 Actual: 0.000204618
+5,3.2,1.2,0.2,Expected: -1 Got: 0 Actual: 3.92031e-07
+Expected: 0 Got: 0 Actual: 0.00019675
+Expected: 0 Got: 0 Actual: 0.000196785
+5.5,3.5,1.3,0.2,Expected: -1 Got: 0 Actual: 4.09082e-07
+Expected: 0 Got: 0 Actual: 0.000201576
+Expected: 0 Got: 0 Actual: 0.000201722
+4.9,3.6,1.4,0.1,Expected: -1 Got: 0 Actual: 4.59502e-07
+Expected: 0 Got: 0 Actual: 0.000215384
+Expected: 0 Got: 0 Actual: 0.000215816
+4.4,3,1.3,0.2,Expected: -1 Got: 0 Actual: 4.04811e-07
+Expected: 0 Got: 0 Actual: 0.000200377
+Expected: 0 Got: 0 Actual: 0.000200481
+5.1,3.4,1.5,0.2,Expected: -1 Got: 0 Actual: 4.0784e-07
+Expected: 0 Got: 0 Actual: 0.000201235
+Expected: 0 Got: 0 Actual: 0.000201369
+5,3.5,1.3,0.3,Expected: -1 Got: 0 Actual: 4.90684e-07
+Expected: 0 Got: 0 Actual: 0.000223608
+Expected: 0 Got: 0 Actual: 0.000224158
+4.5,2.3,1.3,0.3,Expected: -1 Got: 0 Actual: 4.49723e-07
+Expected: 0 Got: 0 Actual: 0.000212759
+Expected: 0 Got: 0 Actual: 0.000213144
+4.4,3.2,1.3,0.2,Expected: -1 Got: 0 Actual: 4.01571e-07
+Expected: 0 Got: 0 Actual: 0.000199469
+Expected: 0 Got: 0 Actual: 0.000199548
+5,3.5,1.6,0.6,Expected: -1 Got: 0 Actual: 3.89772e-07
+Expected: 0 Got: 0 Actual: 0.000196096
+Expected: 0 Got: 0 Actual: 0.000196107
+5.1,3.8,1.9,0.4,Expected: -1 Got: 0 Actual: 4.31363e-07
+Expected: 0 Got: 0 Actual: 0.000207772
+Expected: 0 Got: 0 Actual: 0.00020802
+4.8,3,1.4,0.3,Expected: -1 Got: 0 Actual: 3.94107e-07
+Expected: 0 Got: 0 Actual: 0.000197336
+Expected: 0 Got: 0 Actual: 0.000197386
+5.1,3.8,1.6,0.2,Expected: -1 Got: 0 Actual: 4.35502e-07
+Expected: 0 Got: 0 Actual: 0.000208898
+Expected: 0 Got: 0 Actual: 0.000209188
+4.6,3.2,1.4,0.2,Expected: -1 Got: 0 Actual: 3.91489e-07
+Expected: 0 Got: 0 Actual: 0.000196591
+Expected: 0 Got: 0 Actual: 0.000196623
+5.3,3.7,1.5,0.2,Expected: -1 Got: 0 Actual: 4.12898e-07
+Expected: 0 Got: 0 Actual: 0.000202651
+Expected: 0 Got: 0 Actual: 0.000202805
+5,3.3,1.4,0.2,Expected: 0 Got: 0 Actual: 3.52932e-07
+Expected: 0 Got: 0 Actual: 0.000185301
+Expected: 0 Got: 0 Actual: 0.000185054
+7,3.2,4.7,1.4,Expected: 0 Got: 0 Actual: 3.57656e-07
+Expected: 0 Got: 0 Actual: 0.000186714
+Expected: 0 Got: 0 Actual: 0.000186482
+6.4,3.2,4.5,1.5,Expected: 0 Got: 0 Actual: 3.53475e-07
+Expected: 0 Got: 0 Actual: 0.000185464
+Expected: 0 Got: 0 Actual: 0.000185215
+6.9,3.1,4.9,1.5,Expected: 0 Got: 0 Actual: 3.83729e-07
+Expected: 0 Got: 0 Actual: 0.000194363
+Expected: 0 Got: 0 Actual: 0.000194204
+5.5,2.3,4,1.3,Expected: 0 Got: 0 Actual: 3.59098e-07
+Expected: 0 Got: 0 Actual: 0.000187144
+Expected: 0 Got: 0 Actual: 0.000186909
+6.5,2.8,4.6,1.5,Expected: 0 Got: 0 Actual: 3.69639e-07
+Expected: 0 Got: 0 Actual: 0.000190256
+Expected: 0 Got: 0 Actual: 0.000190052
+5.7,2.8,4.5,1.3,Expected: 0 Got: 0 Actual: 3.57147e-07
+Expected: 0 Got: 0 Actual: 0.000186562
+Expected: 0 Got: 0 Actual: 0.000186326
+6.3,3.3,4.7,1.6,Expected: 0 Got: 0 Actual: 4.08823e-07
+Expected: 0 Got: 0 Actual: 0.000201507
+Expected: 0 Got: 0 Actual: 0.000201482
+4.9,2.4,3.3,1,Expected: 0 Got: 0 Actual: 3.5785e-07
+Expected: 0 Got: 0 Actual: 0.000186771
+Expected: 0 Got: 0 Actual: 0.000186535
+6.6,2.9,4.6,1.3,Expected: 0 Got: 0 Actual: 3.84273e-07
+Expected: 0 Got: 0 Actual: 0.00019452
+Expected: 0 Got: 0 Actual: 0.000194379
+5.2,2.7,3.9,1.4,Expected: 0 Got: 0 Actual: 4.13646e-07
+Expected: 0 Got: 0 Actual: 0.000202859
+Expected: 0 Got: 0 Actual: 0.000202818
+5,2,3.5,1,Expected: 0 Got: 0 Actual: 3.6568e-07
+Expected: 0 Got: 0 Actual: 0.000189094
+Expected: 0 Got: 0 Actual: 0.000188889
+5.9,3,4.2,1.5,Expected: 0 Got: 0 Actual: 3.7594e-07
+Expected: 0 Got: 0 Actual: 0.0001921
+Expected: 0 Got: 0 Actual: 0.000191919
+6,2.2,4,1,Expected: 0 Got: 0 Actual: 3.62283e-07
+Expected: 0 Got: 0 Actual: 0.000188087
+Expected: 0 Got: 0 Actual: 0.00018786
+6.1,2.9,4.7,1.4,Expected: 0 Got: 0 Actual: 3.75394e-07
+Expected: 0 Got: 0 Actual: 0.000191944
+Expected: 0 Got: 0 Actual: 0.00019179
+5.6,2.9,3.6,1.3,Expected: 0 Got: 0 Actual: 3.56224e-07
+Expected: 0 Got: 0 Actual: 0.000186287
+Expected: 0 Got: 0 Actual: 0.000186052
+6.7,3.1,4.4,1.4,Expected: 0 Got: 0 Actual: 3.68393e-07
+Expected: 0 Got: 0 Actual: 0.000189891
+Expected: 0 Got: 0 Actual: 0.000189687
+5.6,3,4.5,1.5,Expected: 0 Got: 0 Actual: 3.72339e-07
+Expected: 0 Got: 0 Actual: 0.000191045
+Expected: 0 Got: 0 Actual: 0.000190863
+5.8,2.7,4.1,1,Expected: 0 Got: 0 Actual: 3.68223e-07
+Expected: 0 Got: 0 Actual: 0.000189845
+Expected: 0 Got: 0 Actual: 0.000189623
+6.2,2.2,4.5,1.5,Expected: 0 Got: 0 Actual: 3.7986e-07
+Expected: 0 Got: 0 Actual: 0.000193239
+Expected: 0 Got: 0 Actual: 0.000193081
+5.6,2.5,3.9,1.1,Expected: 0 Got: 0 Actual: 3.6092e-07
+Expected: 0 Got: 0 Actual: 0.000187685
+Expected: 0 Got: 0 Actual: 0.000187455
+5.9,3.2,4.8,1.8,Expected: 0 Got: 0 Actual: 3.66385e-07
+Expected: 0 Got: 0 Actual: 0.000189302
+Expected: 0 Got: 0 Actual: 0.000189102
+6.1,2.8,4,1.3,Expected: 0 Got: 0 Actual: 3.62376e-07
+Expected: 0 Got: 0 Actual: 0.000188116
+Expected: 0 Got: 0 Actual: 0.000187877
+6.3,2.5,4.9,1.5,Expected: 0 Got: 0 Actual: 3.63549e-07
+Expected: 0 Got: 0 Actual: 0.00018846
+Expected: 0 Got: 0 Actual: 0.000188236
+6.1,2.8,4.7,1.2,Expected: 0 Got: 0 Actual: 3.60735e-07
+Expected: 0 Got: 0 Actual: 0.000187629
+Expected: 0 Got: 0 Actual: 0.000187407
+6.4,2.9,4.3,1.3,Expected: 0 Got: 0 Actual: 3.57652e-07
+Expected: 0 Got: 0 Actual: 0.000186713
+Expected: 0 Got: 0 Actual: 0.000186481
+6.6,3,4.4,1.4,Expected: 0 Got: 0 Actual: 3.56097e-07
+Expected: 0 Got: 0 Actual: 0.000186248
+Expected: 0 Got: 0 Actual: 0.000186004
+6.8,2.8,4.8,1.4,Expected: 0 Got: 0 Actual: 3.54847e-07
+Expected: 0 Got: 0 Actual: 0.000185876
+Expected: 0 Got: 0 Actual: 0.000185626
+6.7,3,5,1.7,Expected: 0 Got: 0 Actual: 3.64039e-07
+Expected: 0 Got: 0 Actual: 0.000188608
+Expected: 0 Got: 0 Actual: 0.00018839
+6,2.9,4.5,1.5,Expected: 0 Got: 0 Actual: 3.79582e-07
+Expected: 0 Got: 0 Actual: 0.00019316
+Expected: 0 Got: 0 Actual: 0.00019302
+5.7,2.6,3.5,1,Expected: 0 Got: 0 Actual: 3.84543e-07
+Expected: 0 Got: 0 Actual: 0.000194595
+Expected: 0 Got: 0 Actual: 0.000194453
+5.5,2.4,3.8,1.1,Expected: 0 Got: 0 Actual: 3.85859e-07
+Expected: 0 Got: 0 Actual: 0.000194973
+Expected: 0 Got: 0 Actual: 0.000194842
+5.5,2.4,3.7,1,Expected: 0 Got: 0 Actual: 3.7289e-07
+Expected: 0 Got: 0 Actual: 0.000191211
+Expected: 0 Got: 0 Actual: 0.000191034
+5.8,2.7,3.9,1.2,Expected: 0 Got: 0 Actual: 3.63141e-07
+Expected: 0 Got: 0 Actual: 0.000188342
+Expected: 0 Got: 0 Actual: 0.000188102
+6,2.7,5.1,1.6,Expected: 0 Got: 0 Actual: 3.71483e-07
+Expected: 0 Got: 0 Actual: 0.000190798
+Expected: 0 Got: 0 Actual: 0.000190602
+5.4,3,4.5,1.5,Expected: 0 Got: 0 Actual: 3.59822e-07
+Expected: 0 Got: 0 Actual: 0.000187358
+Expected: 0 Got: 0 Actual: 0.000187135
+6,3.4,4.5,1.6,Expected: 0 Got: 0 Actual: 3.55306e-07
+Expected: 0 Got: 0 Actual: 0.000186012
+Expected: 0 Got: 0 Actual: 0.00018577
+6.7,3.1,4.7,1.5,Expected: 0 Got: 0 Actual: 3.66776e-07
+Expected: 0 Got: 0 Actual: 0.000189417
+Expected: 0 Got: 0 Actual: 0.000189198
+6.3,2.3,4.4,1.3,Expected: 0 Got: 0 Actual: 3.71086e-07
+Expected: 0 Got: 0 Actual: 0.000190681
+Expected: 0 Got: 0 Actual: 0.000190499
+5.6,3,4.1,1.3,Expected: 0 Got: 0 Actual: 3.80443e-07
+Expected: 0 Got: 0 Actual: 0.000193411
+Expected: 0 Got: 0 Actual: 0.000193249
+5.5,2.5,4,1.3,Expected: 0 Got: 0 Actual: 3.76505e-07
+Expected: 0 Got: 0 Actual: 0.000192262
+Expected: 0 Got: 0 Actual: 0.000192077
+5.5,2.6,4.4,1.2,Expected: 0 Got: 0 Actual: 3.61849e-07
+Expected: 0 Got: 0 Actual: 0.000187959
+Expected: 0 Got: 0 Actual: 0.000187735
+6.1,3,4.6,1.4,Expected: 0 Got: 0 Actual: 3.73555e-07
+Expected: 0 Got: 0 Actual: 0.000191405
+Expected: 0 Got: 0 Actual: 0.000191224
+5.8,2.6,4,1.2,Expected: 0 Got: 0 Actual: 4.07796e-07
+Expected: 0 Got: 0 Actual: 0.00020122
+Expected: 0 Got: 0 Actual: 0.000201185
+5,2.3,3.3,1,Expected: 0 Got: 0 Actual: 3.74233e-07
+Expected: 0 Got: 0 Actual: 0.000191602
+Expected: 0 Got: 0 Actual: 0.000191419
+5.6,2.7,4.2,1.3,Expected: 0 Got: 0 Actual: 3.69271e-07
+Expected: 0 Got: 0 Actual: 0.000190147
+Expected: 0 Got: 0 Actual: 0.000189957
+5.7,3,4.2,1.2,Expected: 0 Got: 0 Actual: 3.70111e-07
+Expected: 0 Got: 0 Actual: 0.000190395
+Expected: 0 Got: 0 Actual: 0.000190204
+5.7,2.9,4.2,1.3,Expected: 0 Got: 0 Actual: 3.62919e-07
+Expected: 0 Got: 0 Actual: 0.000188276
+Expected: 0 Got: 0 Actual: 0.000188061
+6.2,2.9,4.3,1.3,Expected: 0 Got: 0 Actual: 4.02099e-07
+Expected: 0 Got: 0 Actual: 0.000199618
+Expected: 0 Got: 0 Actual: 0.000199584
+5.1,2.5,3,1.1,Expected: 0 Got: 0 Actual: 3.71848e-07
+Expected: 0 Got: 0 Actual: 0.000190905
+Expected: 0 Got: 0 Actual: 0.00019072
+5.7,2.8,4.1,1.3,Expected: 1 Got: 0 Actual: 3.52954e-07
+Expected: 0 Got: 0 Actual: 0.00018531
+Expected: 0 Got: 0 Actual: 0.000185042
+6.3,3.3,6,2.5,Expected: 1 Got: 0 Actual: 3.64925e-07
+Expected: 0 Got: 0 Actual: 0.000188872
+Expected: 0 Got: 0 Actual: 0.000188633
+5.8,2.7,5.1,1.9,Expected: 1 Got: 0 Actual: 3.50402e-07
+Expected: 0 Got: 0 Actual: 0.000184543
+Expected: 0 Got: 0 Actual: 0.000184273
+7.1,3,5.9,2.1,Expected: 1 Got: 0 Actual: 3.56784e-07
+Expected: 0 Got: 0 Actual: 0.000186453
+Expected: 0 Got: 0 Actual: 0.000186195
+6.3,2.9,5.6,1.8,Expected: 1 Got: 0 Actual: 3.53813e-07
+Expected: 0 Got: 0 Actual: 0.000185567
+Expected: 0 Got: 0 Actual: 0.000185301
+6.5,3,5.8,2.2,Expected: 1 Got: 0 Actual: 3.47591e-07
+Expected: 0 Got: 0 Actual: 0.000183695
+Expected: 0 Got: 0 Actual: 0.000183418
+7.6,3,6.6,2.1,Expected: 1 Got: 0 Actual: 3.88839e-07
+Expected: 0 Got: 0 Actual: 0.000195836
+Expected: 0 Got: 0 Actual: 0.000195668
+4.9,2.5,4.5,1.7,Expected: 1 Got: 0 Actual: 3.49488e-07
+Expected: 0 Got: 0 Actual: 0.000184266
+Expected: 0 Got: 0 Actual: 0.000183992
+7.3,2.9,6.3,1.8,Expected: 1 Got: 0 Actual: 3.55461e-07
+Expected: 0 Got: 0 Actual: 0.000186059
+Expected: 0 Got: 0 Actual: 0.000185791
+6.7,2.5,5.8,1.8,Expected: 1 Got: 0 Actual: 3.47759e-07
+Expected: 0 Got: 0 Actual: 0.000183746
+Expected: 0 Got: 0 Actual: 0.000183476
+7.2,3.6,6.1,2.5,Expected: 1 Got: 0 Actual: 3.54614e-07
+Expected: 0 Got: 0 Actual: 0.000185807
+Expected: 0 Got: 0 Actual: 0.000185556
+6.5,3.2,5.1,2,Expected: 1 Got: 0 Actual: 3.57886e-07
+Expected: 0 Got: 0 Actual: 0.000186784
+Expected: 0 Got: 0 Actual: 0.000186529
+6.4,2.7,5.3,1.9,Expected: 1 Got: 0 Actual: 3.52673e-07
+Expected: 0 Got: 0 Actual: 0.000185226
+Expected: 0 Got: 0 Actual: 0.000184963
+6.8,3,5.5,2.1,Expected: 1 Got: 0 Actual: 3.68509e-07
+Expected: 0 Got: 0 Actual: 0.000189931
+Expected: 0 Got: 0 Actual: 0.000189696
+5.7,2.5,5,2,Expected: 1 Got: 0 Actual: 3.62993e-07
+Expected: 0 Got: 0 Actual: 0.000188305
+Expected: 0 Got: 0 Actual: 0.000188061
+5.8,2.8,5.1,2.4,Expected: 1 Got: 0 Actual: 3.54489e-07
+Expected: 0 Got: 0 Actual: 0.000185771
+Expected: 0 Got: 0 Actual: 0.000185515
+6.4,3.2,5.3,2.3,Expected: 1 Got: 0 Actual: 3.54951e-07
+Expected: 0 Got: 0 Actual: 0.000185906
+Expected: 0 Got: 0 Actual: 0.000185648
+6.5,3,5.5,1.8,Expected: 1 Got: 0 Actual: 3.45651e-07
+Expected: 0 Got: 0 Actual: 0.000183108
+Expected: 0 Got: 0 Actual: 0.000182833
+7.7,3.8,6.7,2.2,Expected: 1 Got: 0 Actual: 3.47818e-07
+Expected: 0 Got: 0 Actual: 0.000183764
+Expected: 0 Got: 0 Actual: 0.000183482
+7.7,2.6,6.9,2.3,Expected: 1 Got: 0 Actual: 3.68651e-07
+Expected: 0 Got: 0 Actual: 0.000189968
+Expected: 0 Got: 0 Actual: 0.000189732
+6,2.2,5,1.5,Expected: 1 Got: 0 Actual: 3.50806e-07
+Expected: 0 Got: 0 Actual: 0.000184665
+Expected: 0 Got: 0 Actual: 0.000184399
+6.9,3.2,5.7,2.3,Expected: 1 Got: 0 Actual: 3.67265e-07
+Expected: 0 Got: 0 Actual: 0.000189564
+Expected: 0 Got: 0 Actual: 0.000189336
+5.6,2.8,4.9,2,Expected: 1 Got: 0 Actual: 3.47696e-07
+Expected: 0 Got: 0 Actual: 0.000183726
+Expected: 0 Got: 0 Actual: 0.000183448
+7.7,2.8,6.7,2,Expected: 1 Got: 0 Actual: 3.60247e-07
+Expected: 0 Got: 0 Actual: 0.000187487
+Expected: 0 Got: 0 Actual: 0.000187245
+6.3,2.7,4.9,1.8,Expected: 1 Got: 0 Actual: 3.51618e-07
+Expected: 0 Got: 0 Actual: 0.000184908
+Expected: 0 Got: 0 Actual: 0.000184645
+6.7,3.3,5.7,2.1,Expected: 1 Got: 0 Actual: 3.49387e-07
+Expected: 0 Got: 0 Actual: 0.000184236
+Expected: 0 Got: 0 Actual: 0.000183967
+7.2,3.2,6,1.8,Expected: 1 Got: 0 Actual: 3.60862e-07
+Expected: 0 Got: 0 Actual: 0.000187669
+Expected: 0 Got: 0 Actual: 0.000187432
+6.2,2.8,4.8,1.8,Expected: 1 Got: 0 Actual: 3.60037e-07
+Expected: 0 Got: 0 Actual: 0.000187423
+Expected: 0 Got: 0 Actual: 0.000187186
+6.1,3,4.9,1.8,Expected: 1 Got: 0 Actual: 3.5617e-07
+Expected: 0 Got: 0 Actual: 0.000186272
+Expected: 0 Got: 0 Actual: 0.00018601
+6.4,2.8,5.6,2.1,Expected: 1 Got: 0 Actual: 3.50481e-07
+Expected: 0 Got: 0 Actual: 0.000184565
+Expected: 0 Got: 0 Actual: 0.000184298
+7.2,3,5.8,1.6,Expected: 1 Got: 0 Actual: 3.49584e-07
+Expected: 0 Got: 0 Actual: 0.000184296
+Expected: 0 Got: 0 Actual: 0.000184023
+7.4,2.8,6.1,1.9,Expected: 1 Got: 0 Actual: 3.45502e-07
+Expected: 0 Got: 0 Actual: 0.000183063
+Expected: 0 Got: 0 Actual: 0.00018279
+7.9,3.8,6.4,2,Expected: 1 Got: 0 Actual: 3.5604e-07
+Expected: 0 Got: 0 Actual: 0.000186234
+Expected: 0 Got: 0 Actual: 0.000185971
+6.4,2.8,5.6,2.2,Expected: 1 Got: 0 Actual: 3.5938e-07
+Expected: 0 Got: 0 Actual: 0.000187226
+Expected: 0 Got: 0 Actual: 0.000186981
+6.3,2.8,5.1,1.5,Expected: 1 Got: 0 Actual: 3.61366e-07
+Expected: 0 Got: 0 Actual: 0.000187813
+Expected: 0 Got: 0 Actual: 0.000187559
+6.1,2.6,5.6,1.4,Expected: 1 Got: 0 Actual: 3.47685e-07
+Expected: 0 Got: 0 Actual: 0.000183724
+Expected: 0 Got: 0 Actual: 0.000183451
+7.7,3,6.1,2.3,Expected: 1 Got: 0 Actual: 3.5341e-07
+Expected: 0 Got: 0 Actual: 0.000185447
+Expected: 0 Got: 0 Actual: 0.000185187
+6.3,3.4,5.6,2.4,Expected: 1 Got: 0 Actual: 3.55139e-07
+Expected: 0 Got: 0 Actual: 0.000185962
+Expected: 0 Got: 0 Actual: 0.000185705
+6.4,3.1,5.5,1.8,Expected: 1 Got: 0 Actual: 3.61417e-07
+Expected: 0 Got: 0 Actual: 0.000187833
+Expected: 0 Got: 0 Actual: 0.000187601
+6,3,4.8,1.8,Expected: 1 Got: 0 Actual: 3.51874e-07
+Expected: 0 Got: 0 Actual: 0.000184986
+Expected: 0 Got: 0 Actual: 0.000184725
+6.9,3.1,5.4,2.1,Expected: 1 Got: 0 Actual: 3.52341e-07
+Expected: 0 Got: 0 Actual: 0.000185127
+Expected: 0 Got: 0 Actual: 0.000184863
+6.7,3.1,5.6,2.4,Expected: 1 Got: 0 Actual: 3.52244e-07
+Expected: 0 Got: 0 Actual: 0.000185098
+Expected: 0 Got: 0 Actual: 0.000184841
+6.9,3.1,5.1,2.3,Expected: 1 Got: 0 Actual: 3.64925e-07
+Expected: 0 Got: 0 Actual: 0.000188872
+Expected: 0 Got: 0 Actual: 0.000188633
+5.8,2.7,5.1,1.9,Expected: 1 Got: 0 Actual: 3.50975e-07
+Expected: 0 Got: 0 Actual: 0.000184716
+Expected: 0 Got: 0 Actual: 0.000184447
+6.8,3.2,5.9,2.3,Expected: 1 Got: 0 Actual: 3.51273e-07
+Expected: 0 Got: 0 Actual: 0.000184806
+Expected: 0 Got: 0 Actual: 0.000184541
+6.7,3.3,5.7,2.5,Expected: 1 Got: 0 Actual: 3.53697e-07
+Expected: 0 Got: 0 Actual: 0.000185534
+Expected: 0 Got: 0 Actual: 0.000185277
+6.7,3,5.2,2.3,Expected: 1 Got: 0 Actual: 3.61239e-07
+Expected: 0 Got: 0 Actual: 0.000187782
+Expected: 0 Got: 0 Actual: 0.000187536
+6.3,2.5,5,1.9,Expected: 1 Got: 0 Actual: 3.55431e-07
+Expected: 0 Got: 0 Actual: 0.000186052
+Expected: 0 Got: 0 Actual: 0.000185798
+6.5,3,5.2,2,Expected: 1 Got: 0 Actual: 3.54621e-07
+Expected: 0 Got: 0 Actual: 0.00018581
+Expected: 0 Got: 0 Actual: 0.000185555
+6.2,3.4,5.4,2.3,Expected: 1 Got: 0 Actual: 3.61399e-07
+Expected: 0 Got: 0 Actual: 0.000187827
+Expected: 0 Got: 0 Actual: 0.000187587
+5.9,3,5.1,1.8,33.3333 test
