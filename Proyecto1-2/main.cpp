@@ -15,29 +15,30 @@ int main (int argc, char* argv[])
 	// argv[5] is filename to test against
 	// argv[6] is number of tests
 	//cout << "prin" << argv[4];
+	// argv[7] is number of hidden layer neurons
 
-	if (argc > 6) {
+	if (argc > 7) {
 	DataReader a;
 	DataReader c;
 
 	int numCases = atof(argv[2]);
 	int numV = atof(argv[3]);
 	int numD = atof(argv[4]);
+	int numN = atof(argv[7]);
 
 	int numTestCases = atof(argv[6]);
-
 	a.DataReader::loadData(argv[1], numCases, numV, numD);
 	c.DataReader::loadData(argv[5], numTestCases, numV, numD);
-
 	srand (static_cast <unsigned> (time(0)));
 
-	NeuralNetwork b = NeuralNetwork(numV, 2, numD);
+	//cout << "Start training" << endl;
+	NeuralNetwork b = NeuralNetwork(numV, numN, numD);
 	b.train_network(a);
-	cout << "End training" << endl;
+	//cout << "End training" << endl;
 
 	double acc = b.test(c);
 
-	std::cout << acc << " test"<< std::endl;
+	std::cout << acc << "% test"<< std::endl;
 	}
 	else {
 		cout << "parametros Incorrectos " << endl;

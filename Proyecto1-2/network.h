@@ -8,7 +8,7 @@ private:
 	int n_output;
 
 	double learning_rate = 0.01;
-	int max_iter = 1000000;
+	int max_iter = 100000;
 
 	// These store the output
 	double* input_neurons_output;
@@ -32,7 +32,7 @@ private:
 	double dot_product(const double*, const double*, const int);
 	void update_weights();
 	bool train_iteration(const DataReader, const int);
-	int filter(double);
+	double filter(double);
 
 
 public:

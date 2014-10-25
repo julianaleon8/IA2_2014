@@ -6,11 +6,9 @@ private:
 	int n_input;
 	int n_hidden;
 	int n_output;
-	int numPrueba;
 
 	double learning_rate = 0.01;
-	int max_iter = 1000000;
-	double sum_error = 0;
+	int max_iter = 100000;
 
 	// These store the output
 	double* input_neurons_output;
@@ -34,11 +32,11 @@ private:
 	double dot_product(const double*, const double*, const int);
 	void update_weights();
 	bool train_iteration(const DataReader, const int);
-	int filter(double);
+	double filter(double);
 
 
 public:
-	NeuralNetwork(int, int, int, int);
+	NeuralNetwork(int, int, int);
 	void set_training_parameter(double, int);
 	~NeuralNetwork();
 	void backpropagate(const double*);
