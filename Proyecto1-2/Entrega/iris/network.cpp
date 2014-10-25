@@ -36,7 +36,7 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no, int p)
 	if (numPrueba == 1) {
 		n_output = 1;
 	} else {
-		n_output = 3;
+		n_output = 1;
 	}
 
 	input_neurons_output = new double[n_input + 1]();
@@ -207,7 +207,6 @@ inline int NeuralNetwork::filter( double x )
 		else
 			return 0;
 	}
-
 }
 
 void NeuralNetwork::train_network(const DataReader d)
@@ -239,7 +238,6 @@ double NeuralNetwork::test(const DataReader d)
 
 		if (!correct)
 			incorrect++;
-
 	}
 
 	return 100 - (incorrect/d.num_cases * 100);
