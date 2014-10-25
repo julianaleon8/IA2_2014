@@ -14,7 +14,8 @@ using namespace std;
 #define NUM_OF_X		3
 #define NUM_CASES		4
 
-int input[NUM_CASES][NUM_OF_X] = {
+int input[NUM_CASES][NUM_OF_X] =
+{
 	{ 1, 0, 0 },
 	{ 1, 0, 1 },
 	{ 1, 1, 0 },
@@ -26,21 +27,30 @@ int desired[NUM_CASES] = { 0, 1, 1, 1 };
 float learning_rate = 0.1f;
 float weights[NUM_OF_X] = { 0.0, 0.0, 0.0 };
 
-inline float dot_product(int *inputCase, float* w) {
+inline float dot_product(int* inputCase, float* w)
+{
 	float res = 0.0;
 	for (int j = 0; j < NUM_OF_X; ++j)
+	{
 		res += inputCase[j] * w[j];
+	}
 	return res;
 }
 
-inline int Z(float result) {
+inline int Z(float result)
+{
 	if (result > 0.5f)
+	{
 		return 1;
+	}
 	else
+	{
 		return 0;
+	}
 }
 
-int main(void) {
+int main(void)
+{
 	// For max iterations
 	int counter = 0;
 	bool no_error = true;
@@ -71,16 +81,16 @@ int main(void) {
 
 		if (no_error)
 		{
-//			cout << "Number of iterations needed " << counter << endl;
-//			cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
+			//			cout << "Number of iterations needed " << counter << endl;
+			//			cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 			return 0;
 		}
 		cout << counter << "\t" << error << endl;
-		
+
 		++counter;
-		
+
 	}
 
-//	cout << "Max number of iterations" << endl;
-//	cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
+	//	cout << "Max number of iterations" << endl;
+	//	cout << "Final weights: " << weights[0] << " " << weights[1] << " " << weights[2] << endl;
 }

@@ -16,34 +16,36 @@ int main (int argc, char* argv[])
 	// argv[6] is number of tests
 	//cout << "prin" << argv[4];
 
-	if (argc > 6) {
-	DataReader a;
-	DataReader c;
+	if (argc > 6)
+	{
+		DataReader a;
+		DataReader c;
 
-	int numCases = atof(argv[2]);
-	int numV = atof(argv[3]);
-	int numD = atof(argv[4]);
+		int numCases = atof(argv[2]);
+		int numV = atof(argv[3]);
+		int numD = atof(argv[4]);
 
-	int numTestCases = atof(argv[6]);
+		int numTestCases = atof(argv[6]);
 
-	a.DataReader::loadData(argv[1], numCases, numV, numD);
-	
-	c.DataReader::loadData(argv[5], numTestCases, numV, numD);
+		a.DataReader::loadData(argv[1], numCases, numV, numD);
 
-	srand (static_cast <unsigned> (time(0)));
+		c.DataReader::loadData(argv[5], numTestCases, numV, numD);
 
-	
-	NeuralNetwork b = NeuralNetwork(numV, 7, numD);
+		srand (static_cast <unsigned> (time(0)));
 
-	b.train_network(a);
 
-	cout << "End training" << endl;
+		NeuralNetwork b = NeuralNetwork(numV, 7, numD);
 
-	double acc = b.test(c);
+		b.train_network(a);
 
-	std::cout << acc << " test"<< std::endl;
+		cout << "End training" << endl;
+
+		double acc = b.test(c);
+
+		std::cout << acc << " test"<< std::endl;
 	}
-	else {
+	else
+	{
 		cout << "parametros Incorrectos " << endl;
 		return 1;
 	}
