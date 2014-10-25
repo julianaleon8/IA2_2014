@@ -217,7 +217,7 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 
 inline double NeuralNetwork::filter( double x )
 {
-	if ( x > 0.0001 )
+	if ( x > 0.01 )
 	{
 		return 1;
 	}
