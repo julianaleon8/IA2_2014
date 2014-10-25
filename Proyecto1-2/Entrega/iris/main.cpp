@@ -8,14 +8,6 @@
 using namespace std;
 int main (int argc, char* argv[])
 {
-	// argv[1] is filemame
-	// argv[2] is numbers of cases
-	// argv[3] is numbers of pattern's
-	// argv[4] is numbers of desired
-	// argv[5] is filename to test against
-	// argv[6] is number of tests
-	//cout << "prin" << argv[4];
-	// argv[7] is number of hidden layer neurons
 
 	if (argc > 7)
 	{
@@ -28,6 +20,7 @@ int main (int argc, char* argv[])
 		int numN = atof(argv[7]);
 
 		int numTestCases = atof(argv[6]);
+		
 		a.DataReader::loadData(argv[1], numCases, numV, numD);
 		c.DataReader::loadData(argv[5], numTestCases, numV, numD);
 		srand (static_cast <unsigned> (time(0)));
