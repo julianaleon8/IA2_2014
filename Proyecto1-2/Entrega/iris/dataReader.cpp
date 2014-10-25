@@ -1,7 +1,7 @@
 #include "dataReader.h"
 
 using namespace std;
-void DataReader::loadData( const char* file,int numCases, int numVariables, int numDesired) {
+void DataReader::loadData( const char* file,int numCases, int numVariables, int numDesired, int numPrueba) {
 
 // File input for the training examples
 	std::ifstream input( file );
@@ -18,11 +18,11 @@ void DataReader::loadData( const char* file,int numCases, int numVariables, int 
 	char *sopa = NULL;
 
 	num_cases = numCases;
+	num_prueba = numPrueba;
 
 	for (int j = 0 ; j < numCases; j++)
 	{
 		
-
 		getline( input, line);
 
 		char *aux = new char[line.length() + 1];

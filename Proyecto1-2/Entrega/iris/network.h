@@ -6,6 +6,7 @@ private:
 	int n_input;
 	int n_hidden;
 	int n_output;
+	int numPrueba;
 
 	double learning_rate = 0.01;
 	int max_iter = 1000000;
@@ -37,7 +38,7 @@ private:
 
 
 public:
-	NeuralNetwork(int, int, int);
+	NeuralNetwork(int, int, int, int);
 	void set_training_parameter(double, int);
 	~NeuralNetwork();
 	void backpropagate(const double*);

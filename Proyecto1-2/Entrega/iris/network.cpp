@@ -26,11 +26,18 @@ inline double NeuralNetwork::dev_sigma(const double x)
 	return x * (1 - x);
 }
 
-NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
+NeuralNetwork::NeuralNetwork(int ni, int nh, int no, int p)
 {
+	numPrueba = p;
 	n_input = ni;
+	
 	n_hidden = nh;
-	n_output = no;
+	
+	if (numPrueba == 1) {
+		n_output = 1;
+	} else {
+		n_output = 3;
+	}
 
 	input_neurons_output = new double[n_input + 1]();
 	hidden_neurons_output = new double[n_hidden + 1]();
@@ -64,27 +71,7 @@ NeuralNetwork::NeuralNetwork(int ni, int nh, int no)
 
 NeuralNetwork::~NeuralNetwork()
 {
-	/*delete[] input_neurons_output;
-	delete[] hidden_neurons_output;
-	delete[] output_neurons_output;
-	delete[] hidden_error;
-	delete[] output_error;
 
-	for (int i = 0; i <= n_input; ++i)
-	{
-		delete[] w_input_to_hidden[i];
-		delete[] delta_input_to_hidden[i];
-	}
-	delete[] w_input_to_hidden;
-	delete[] delta_input_to_hidden;
-
-	for (int i = 0; i <= n_hidden; ++i)
-	{
-		delete[] w_input_to_hidden[i];
-		delete[] delta_hidden_to_output[i];
-	}
-	delete[] delta_hidden_to_output;
-	delete[] w_hidden_to_output;*/
 }
 
 void NeuralNetwork::set_training_parameter(double lr, int iter)
@@ -205,23 +192,22 @@ bool NeuralNetwork::train_iteration(const DataReader d, const int num_cases)
 
 inline int NeuralNetwork::filter( double x )
 {
-	if ( x > 0.5 )
-		return 1;
-	else
-		return -1;
-/*
-	if (x > 0.5)
-		return 1;
-	else if (x < -0.5)
-		return -1;
-	else
-		return 0;
-	*/ 
-/*
-	 * si > 1.5 -> 3
-	 * si < -1.5 -> -3
-	 * else 0
-	*/
+	if (numPrueba == 1)
+	{ 
+		if ( x > 0.5 )
+			return 1;
+		else
+			return -1;
+	} else {
+		
+		if (x > 0.1)
+			return 1;
+		else if (x < -0.1)
+			return -1;
+		else
+			return 0;
+	}
+
 }
 
 void NeuralNetwork::train_network(const DataReader d)
@@ -253,17 +239,6 @@ double NeuralNetwork::test(const DataReader d)
 
 		if (!correct)
 			incorrect++;
-
-		/*for (int n_in = 0; n_in < n_input; ++n_in)
-		{
-			std::cout << d.pattern[i][n_in] << ',';
-		}*/
-
-	/*	for (int n_in = 0; n_in < n_output; ++n_in)
-		{
-			std::cout << filter(output_neurons_output[n_in]) << " -" ;
-		}
-		*/
 
 	}
 

@@ -11,8 +11,10 @@ public:
 	int num_cases;
 	double** pattern;
 	double** target;
+	// Si es la prueba de tipo 1 o 2
+	int num_prueba;
 public:
 
-	void loadData(const char* , int ,int , int );
+	void loadData(const char* , int ,int , int ,int);
 
 };

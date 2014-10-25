@@ -8,32 +8,26 @@
 using namespace std;
 int main (int argc, char* argv[])
 {
-	// argv[1] is filemame
-	// argv[2] is numbers of cases
-	// argv[3] is numbers of pattern's
-	// argv[4] is numbers of desired
-	// argv[5] is filename to test against
-	// argv[6] is number of tests
-	//cout << "prin" << argv[4];
 
-	if (argc > 6) {
+	if (argc > 5) 
+	{
 	DataReader a;
 	DataReader c;
 
 	int numCases = atof(argv[2]);
-	int numV = atof(argv[3]);
-	int numD = atof(argv[4]);
+	int numV = 4;
+	int numD = 1;
 
-	int numTestCases = atof(argv[6]);
+	int numTestCases = atof(argv[4]);
+	int numPrueba = atof(argv[5]);
 
-	a.DataReader::loadData(argv[1], numCases, numV, numD);
+	a.DataReader::loadData(argv[1], numCases, numV, numD, numPrueba);
 	
-	c.DataReader::loadData(argv[5], numTestCases, numV, numD);
+	c.DataReader::loadData(argv[3], numTestCases, numV, numD, numPrueba);
 
 	srand (static_cast <unsigned> (time(0)));
 
-	
-	NeuralNetwork b = NeuralNetwork(numV, 7, numD);
+	NeuralNetwork b = NeuralNetwork(numV, 4, numD, numPrueba);
 
 	b.train_network(a);
 
@@ -45,6 +39,7 @@ int main (int argc, char* argv[])
 	}
 	else {
 		cout << "parametros Incorrectos " << endl;
+		cout << "\t ./main achivo_training numCases archivo_prueba numTestCases [ 1 | 2 ] " << endl;
 		return 1;
 	}
 }
