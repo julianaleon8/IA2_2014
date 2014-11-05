@@ -1,21 +1,16 @@
 all: main
 
-main: dataReader.o  network.o main.o
+main: aprendizajeQ.o  main.o
 
-	g++ -std=c++11 -O2 -o main dataReader.o main.o network.o
+	g++ -std=c++11 -O2 -o main aprendizajeQ.o main.o 
 
-dataReader.o: dataReader.cpp dataReader.h
+aprendizajeQ.o: aprendizajeQ.cpp aprendizajeQ.hpp
 
-	g++ -std=c++11 -O2 -c dataReader.cpp
+	g++ -std=c++11 -O2 -c aprendizajeQ.cpp
 
-network.o: network.cpp network.h
+main.o: mainPrueba.cpp aprendizajeQ.hpp
 
-	g++ -std=c++11 -O2 -c network.cpp
-
-
-main.o: main.cpp dataReader.h
-
-	g++ -std=c++11 -O2 -c main.cpp
+	g++ -std=c++11 -O2 -c mainPrueba.cpp
 
 
 clean:
