@@ -13,9 +13,17 @@
 ########################################################
 
 from random import randint as rand_randint, uniform as rand_uniform, choice as rand_choice, randrange as randrange
+from pyevolve import G1DList
+from pyevolve import GSimpleGA
+from pyevolve import G1DBinaryString
+from pyevolve import Initializators
+from pyevolve import Util
+from pyevolve import Selectors
 import sys
 
 TRAINING_SET = []
+MAX_SET_SIZE = 4
+RULE_SIZE = 32
 
 #######################
 #######################
@@ -107,7 +115,31 @@ def tipo(num):
 		return '10'
 	return '01'
 
+#######################
+#######################
+#######  Init  ########
+#######################
+#######################
+def init(genome, **args):
+	_set = []
+	size = randrange(1,MAX_SET_SIZE + 1)
+	for i in xrange(set_size):
+		rule = [rand_choice(('0','1')) for j in xrange(RULE_SIZE)]
+		_set = _set + rule
+	genome.genomeList = _set
 
+#######################
+#######################
+#######  Fitness ######
+#######################
+#######################
+def fitness(individual):
+	score = 0
+	for sample in TRAINING_SET:
+		if ( match(individual,sample) ):
+			score += 1
+	return score * score
+	
 ##################
 ##################
 #####  Main  #####
@@ -131,6 +163,17 @@ for line in f:
 	at = at + tipo(int(l[4]))
 	TRAINING_SET = TRAINING_SET + [at]
 
-print TRAINING_SET
+#print TRAINING_SET
+genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
+genome.initializator.set(init)
+
+## Hay que hacer dos fitness
+genome.evaluator.set(fitness)
+
+## COSAS POR DEFINIR --- JULIANA
+#	hacer la función de mutation y crossover de Gabil y
+#		colocar la función en los sets:
+#genome.crossover.set()
+#genome.mutator.set()
 
 f.close()
