@@ -138,8 +138,59 @@ def fitness(individual):
 	for sample in TRAINING_SET:
 		if ( match(individual,sample) ):
 			score += 1
+	score = score / len(TRAINING_SET)
 	return score * score
+
+#def crossover_gabil(genome, **args):
+"""
+def crossover_gabil(gDad, gMom):
+
+	sister = None
+	brother = None
+	#gMom = args["mom"]
+	#gDad = args["dad"]
+
+	if (len(gMom) < len(gDad)):
+		gMom , gDad = gDad, gMom
+		
+	splitMom = [ rand_randint( 1 , len(Mom)-1) , rand_randint(1, len(Mom)-1)]
+	if (splitMom [1] < splitMom[0] ):
+		splitMom[0],splitMom[1] = splitMom[1],splitMom[0] 
+		
+ 
+	for i in range(0 , len(gMom)):
+		if (i <= splitMom[0]):
+			s1 = gMom[i]
+		if (splitMom[0] <  i < splitMom[1] ):
+			s2 = gMom[i]
+		if ( i >=  splitMom[1]):
+			s3 = gMom[i]
+
+	nRulesD = len(gDad) / RULE_SIZE;
+	splitDad = [ rand_randint( 1 , nRulesD-1) , rand_randint(1, nRulesD-1)]
+	if (splitDad[0] > splitDad[1] ):
+		splitDad[0], splitDad[1] = splitDad[1], splitDad[0]
+	positionDad = splitMom[0] % RULE_SIZE
+	positionDad1 = splitMom[1] % RULE_SIZE
 	
+	for i in range(0, len(gDad)):
+		if (i == splitDad[0] * RULE_SIZE + positionDad):
+			n1 = i
+		if (i == splitDad[1] * RULE_SIZE + positionDad):
+			n2 = i
+
+	for i in range(0 , len(gDad)):
+		if (i <= n1):
+			d1 = gDad[i]
+		if (n1 <  i < n2 ):
+			d2 = gDad[i]
+		if ( i >= n2):
+			d3 = gDad[i]
+	sister = s1 + d2 + s3
+	brother = d1 + s2 + d3
+
+	return (sister, brother)
+"""
 ##################
 ##################
 #####  Main  #####
@@ -164,15 +215,15 @@ for line in f:
 	TRAINING_SET = TRAINING_SET + [at]
 
 #print TRAINING_SET
-genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
-genome.initializator.set(init)
+#genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
+#genome.initializator.set(init)
 
 ## Hay que hacer dos fitness
-genome.evaluator.set(fitness)
+#genome.evaluator.set(fitness)
 
 ## COSAS POR DEFINIR --- JULIANA
-#	hacer la función de mutation y crossover de Gabil y
-#		colocar la función en los sets:
+#	hacer la funcion de mutation y crossover de Gabil y
+#		colocar la funcion en los sets:
 #genome.crossover.set()
 #genome.mutator.set()
 
