@@ -120,13 +120,22 @@ def tipo(num):
 #######  Init  ########
 #######################
 #######################
-def init(genome, **args):
+#def init(genome, **args):
+"""
 	_set = []
 	size = randrange(1,MAX_SET_SIZE + 1)
-	for i in xrange(set_size):
+	for i in xrange(size):
 		rule = [rand_choice(('0','1')) for j in xrange(RULE_SIZE)]
 		_set = _set + rule
 	genome.genomeList = _set
+"""
+def init():
+	_rule = ''
+	size = randrange(1, MAX_SET_SIZE)
+	for i in xrange(size * 32):
+		rule = rand_choice(('0','1'))
+		_rule = _rule + rule
+	return _rule
 
 #######################
 #######################
@@ -139,10 +148,16 @@ def fitness(individual):
 		if ( match(individual,sample) ):
 			score += 1
 	score = score / len(TRAINING_SET)
-	return score * score
+	return (score * score)
 
+#######################
+#######################
+#######  GABIL  #######
+#######################
+#######################
+
+## Crossover
 #def crossover_gabil(genome, **args):
-"""
 def crossover_gabil(gDad, gMom):
 
 	sister = None
@@ -153,44 +168,49 @@ def crossover_gabil(gDad, gMom):
 	if (len(gMom) < len(gDad)):
 		gMom , gDad = gDad, gMom
 		
-	splitMom = [ rand_randint( 1 , len(Mom)-1) , rand_randint(1, len(Mom)-1)]
+	splitMom = [ rand_randint( 1 , len(gMom) - 1) , rand_randint(1, len(gMom) - 1)]
+	
 	if (splitMom [1] < splitMom[0] ):
 		splitMom[0],splitMom[1] = splitMom[1],splitMom[0] 
 		
- 
-	for i in range(0 , len(gMom)):
-		if (i <= splitMom[0]):
-			s1 = gMom[i]
-		if (splitMom[0] <  i < splitMom[1] ):
-			s2 = gMom[i]
-		if ( i >=  splitMom[1]):
-			s3 = gMom[i]
+	print "LenGMOM: %s, Split mom 0, Split mom 1: %s, %s " %(len(gMom),splitMom[0],splitMom[1])
 
+	s1 = gMom[0:splitMom[0]]
+	s2 = gMom[splitMom[0]:splitMom[1]]
+	s3 = gMom[splitMom[1]:len(gMom)]
+	
+	print "s1 : %s, s2 : %s, s3 : %s " %(s1,s2,s3)
+	
 	nRulesD = len(gDad) / RULE_SIZE;
-	splitDad = [ rand_randint( 1 , nRulesD-1) , rand_randint(1, nRulesD-1)]
+	print nRulesD
+	splitDad = [ rand_randint( 1 , nRulesD) , rand_randint(1, nRulesD)]
+	
 	if (splitDad[0] > splitDad[1] ):
 		splitDad[0], splitDad[1] = splitDad[1], splitDad[0]
+	
 	positionDad = splitMom[0] % RULE_SIZE
 	positionDad1 = splitMom[1] % RULE_SIZE
 	
-	for i in range(0, len(gDad)):
-		if (i == splitDad[0] * RULE_SIZE + positionDad):
-			n1 = i
-		if (i == splitDad[1] * RULE_SIZE + positionDad):
-			n2 = i
+	n1 = splitDad[0] + positionDad
+	n2 = splitDad[1] + positionDad1
 
-	for i in range(0 , len(gDad)):
-		if (i <= n1):
-			d1 = gDad[i]
-		if (n1 <  i < n2 ):
-			d2 = gDad[i]
-		if ( i >= n2):
-			d3 = gDad[i]
+	if (n2 < n1):
+		n1,n2 = n2,n1
+
+	print "len_DAD: %s, Split dad 0, Split dad 1: %s, %s " %(len(gDad),n1,n2)
+	d1 = gDad[0:n1]
+	d2 = gDad[n1:n2]
+	d3 = gDad[n2:len(gDad)]
+	print "d1 : %s, d2 : %s, d3 : %s " %(d1,d2,d3)
+
 	sister = s1 + d2 + s3
 	brother = d1 + s2 + d3
-
+	
 	return (sister, brother)
-"""
+
+## Mutation
+
+
 ##################
 ##################
 #####  Main  #####
@@ -214,6 +234,12 @@ for line in f:
 	at = at + tipo(int(l[4]))
 	TRAINING_SET = TRAINING_SET + [at]
 
+set_m = init()
+set_d = init()
+print "gMom %s" %(set_m)
+print "gDad %s" %(set_d)
+sis, bro = crossover_gabil(set_m, set_d )
+print "sis : %s (%s), bro : %s(%s)" %(sis,len(sis), bro, len(bro))
 #print TRAINING_SET
 #genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
 #genome.initializator.set(init)
