@@ -141,32 +141,38 @@ def comparar_split(ejemplo,individuo,rango):
 	for i in rango:
 		for j in rango:
 			if i == j:
-				if ejemplo[i] == '1':
-					if ejemplo[i] == individuo[i]:
+			#	print "es i : %i , Es 1 : %s, individuo[i]: %s " %(i, ejemplo[i],individuo[i],)
+				if (ejemplo[i] == '1'):
+					if (individuo[i] == '1'):
+					#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],(coopera))
 						coopera = True
 					else:
+					#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],False)
 						return False
+#	print "prueba %" %(prueba)
+#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],(coopera))
 	return coopera
 
 
 def match(individuo,sample):
-	if (not ((sample[1:5] == individuo[1:5]))):
-		if (comparar_split(sample,individuo,range(1,6))):
+	
+	if (not ((list(sample[:5]) == individuo[:5]))):
+		if (comparar_split(list(sample),individuo,range(0,5))):
 			return False
 			
-	if (not ((sample[6:11] == individuo[6:11]))):
-		if (comparar_split(sample,individuo,range(6,12))):
+	if (not ((list(sample[6:11]) == individuo[6:11]))):
+		if (comparar_split(list(sample),individuo,range(6,11))):
 			return False
 			
-	if (not ((sample[12:19] == individuo[12:19]))):
-		if (comparar_split(sample,individuo,range(12,20))):
+	if (not ((list(sample[12:19]) == individuo[12:19]))):
+		if (comparar_split(list(sample),individuo,range(12,19))):
 			return False
 			
-	if (not ((sample[20:30] == individuo[20:30]))):
-		if (comparar_split(sample,individuo,range(20,31))):
+	if (not ((list(sample[20:30]) == individuo[20:30]))):
+		if (comparar_split(list(sample),individuo,range(20,30))):
 			return False	
-		
-	if (not ((sample[31:32] == individuo[31:32]))):
+	
+	if (not ((list(sample[31:]) == individuo[31:]))):
 		return False
 	
 	return True
@@ -200,7 +206,6 @@ def crossover_gabil(genome, **args):
 	gMom = args["mom"]
 	gDad = args["dad"]
 	
-		
 	print "(1) GMom: %s, GDad: %s " %(gMom, gDad)
 	
 	if (len(gMom) < len(gDad)):
@@ -251,8 +256,8 @@ def crossover_gabil(genome, **args):
 	brother.resetStats()
 	brother.genomeList = d1 + s2 + d3
 	
-	sister = s1 + d2 + s3
-	brother = d1 + s2 + d3
+	#sister = s1 + d2 + s3
+	#brother = d1 + s2 + d3
 	
 	return (sister, brother)
 
@@ -305,7 +310,13 @@ if len(sys.argv) != 7:
 #####  TRAINING  ######
 #######################
 #######################
-
+"""
+ejemplo = list('10000')
+individuo = list('11111')
+print ejemplo
+print individuo
+print comparar_split(ejemplo,individuo,range(0,5))
+"""
 f = open(sys.argv[1],'r')
 
 for line in f:
@@ -318,10 +329,7 @@ for line in f:
 	at = at + tipo(int(l[4]))
 	TRAINING_SET = TRAINING_SET + [at]
 
-#sis, bro = crossover_gabil()
-#print "sis : %s (%s), bro : %s(%s)" %(sis,len(sis), bro, len(bro))
-
-genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
+genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE * RULE_SIZE)
 genome.initializator.set(init)
 
 ## Hay que hacer dos fitness
@@ -369,8 +377,8 @@ for line in f:
 	
 score = 0
 for sample in SAMPLE_SET:
-   if(match(ga.bestIndividual(),sample)):
-      score+=1
+	if(match(ga.bestIndividual(),sample)):
+		score+=1
 
 print "Score: %s, Sample_set: %s" %(score, len(SAMPLE_SET))
 
