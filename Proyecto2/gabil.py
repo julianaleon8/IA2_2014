@@ -128,63 +128,8 @@ def init(genome, **args):
 		_set = _set + rule
 	genome.genomeString = _set
 	genome.stringLength = len(_set)
-	
-"""
-def init():
-	_rule = ''
-	size = randrange(1, MAX_SET_SIZE)
-	for i in xrange(size * 32):
-		rule = rand_choice(('0','1'))
-		_rule = _rule + rule
-	return _rule
 
-
-def comparar_split(ejemplo,individuo,rango):
 	
-	coopera = False
-	for i in rango:
-		for j in rango:
-			#print "i : %i, j : %i" %(i,j)
-			if i == j:
-			#	print "es i : %i , Es 1 : %s, individuo[i]: %s " %(i, ejemplo[i],individuo[i],)
-				if (ejemplo[i] == '1'):
-					if (individuo[i] == '1'):
-					#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],(coopera))
-						coopera = True
-					else:
-					#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],False)
-						return False
-						
-#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],(coopera))
-	return coopera
-
-def match(individuo,sample):
-	if (len(individuo) == 32 or len(individuo) == 64 or len(individuo) == 128):
-		return False
-	
-	if (not ((list(sample[:5]) == individuo[:5]))):
-		if (not comparar_split(list(sample),individuo,range(0,5))):
-			return False
-	
-	if (not ((list(sample[6:11]) == individuo[6:11]))):
-		if (not comparar_split(list(sample),individuo,range(6,11))):
-			return False
-			
-	if (not ((list(sample[12:19]) == individuo[12:19]))):
-		if (not comparar_split(list(sample),individuo,range(12,19))):
-			return False
-			
-	if (not ((list(sample[20:30]) == individuo[20:30]))):
-		if (not comparar_split(list(sample),individuo,range(20,30))):
-			return False	
-	
-	if (not ((list(sample[31:]) == individuo[31:]))):
-		return False
-		
-	#print "s : %s, i : %s, bool : %s " %(sample[:5],individuo[:5],comparar_split(list(sample),individuo,range(0,5))) 	
-	return True
-"""
-
 def match(chromosome,sample):
 	s = long(sample,2)
 	c = ''.join(chromosome.genomeString)
@@ -192,7 +137,7 @@ def match(chromosome,sample):
 		if ((long(c[i:i+RULE_SIZE],2) & s) == s):
 			return True
 	return False
-	
+
 #######################
 #######################
 #######  Fitness ######
@@ -203,11 +148,7 @@ def fitness(individual):
 	score = 0.0
 	for sample in TRAINING_SET:
 		if ( match(individual,sample) ):
-			#print score
 			score += 1.0
-	#print len(TRAINING_SET) 
-	#score = score / len(TRAINING_SET)
-	#print "individual : \n%s" %(individual)
 	individual.score = score * score
 	individual.fitness = score * score
 	return score * score
@@ -220,8 +161,6 @@ def fitness(individual):
 
 ## Crossover
 def crossover_gabil(genome, **args):
-#def crossover_gabil():
-#	print "Im in crossover"
 	sister = None
 	brother = None
 	gMom = args["mom"]
@@ -288,13 +227,12 @@ def crossover_gabil(genome, **args):
 ## 		Funcion modificada de la libreria de Pyevolve
 ##			para la representacion que tenemos.
 def G1DBinaryStringMutatorFlip_GABIL(genome, **args):
-	#print "Im in mutations"
 	if args["pmut"] <= 0.0:
 		return 0
 	stringLength = len(genome)
 	
 	mutations = args["pmut"] * (stringLength)
-
+	
 	if mutations < 1.0:
 		mutations = 0
 		for it in xrange(stringLength):
@@ -397,11 +335,10 @@ for line in f:
 score = 0.0
 for sample in SAMPLE_SET:
 	if(match(ga.bestIndividual(),sample)):
-		#print score
 		score+=1.0
 
 print "Score: %s, Sample_set: %s" %(score, len(SAMPLE_SET))
 
-print "porcentaje acertadas: %s" %((float(score)/len(SAMPLE_SET)) * 100)
+print "% acertadas: %s" %((float(score)/len(SAMPLE_SET)) * 100)
 
 f.close()
