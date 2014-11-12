@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 ########################################################
 # 				Universidad Simon Bolivar				#
 # 				Inteligencia Artificial II 				#
@@ -13,19 +11,15 @@
 ########################################################
 
 from random import randint as rand_randint, uniform as rand_uniform, choice as rand_choice, randrange as randrange
-#from pyevolve import G1DList
-#from pyevolve import GSimpleGA
-#from pyevolve import G1DBinaryString
 from pyevolve import *
-#from pyevolve import Util
-#from pyevolve import Selectors
 import sys
 
 TRAINING_SET = []
 SAMPLE_SET = []
-MAX_SET_SIZE = 4
+MAX_SET_SIZE = 3
 RULE_SIZE = 32
-GENERATIONS = 100
+MAX_RULE_SIZE = 128
+GENERATIONS = 1000
 INIT_POP = 10
 
 #######################
@@ -124,12 +118,18 @@ def tipo(num):
 #######################
 #######################
 def init(genome, **args):
+	print "Im in init"
 	_set = []
-	size = randrange(1,MAX_SET_SIZE + 1)
+	size = randrange(1,MAX_SET_SIZE +1)
 	for i in xrange(size):
 		rule = [rand_choice(('0','1')) for j in xrange(RULE_SIZE)]
 		_set = _set + rule
+	#print _set
+	#print len(_set)
 	genome.genomeList = _set
+	genome.stringLength = len(_set)
+	#print genome
+	
 """
 def init():
 	_rule = ''
@@ -140,26 +140,70 @@ def init():
 	return _rule
 """
 
+def comparar_split(ejemplo,individuo,rango):
+	"""Compara un pedazo de regla con otro"""
+	
+	coopera = False
+	for i in rango:
+		for j in rango:
+			#print "i : %i, j : %i" %(i,j)
+			if i == j:
+			#	print "es i : %i , Es 1 : %s, individuo[i]: %s " %(i, ejemplo[i],individuo[i],)
+				if (ejemplo[i] == '1'):
+					if (individuo[i] == '1'):
+					#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],(coopera))
+						coopera = True
+					else:
+					#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],False)
+						return False
+						
+#	print "s : %s, i : %s, bool : %s " %(ejemplo[:5],individuo[:5],(coopera))
+	return coopera
+
+def match(individuo,sample):
+	if (len(individuo) == 32 or len(individuo) == 64 or len(individuo) == 128):
+		return False
+	
+	if (not ((list(sample[:5]) == individuo[:5]))):
+		if (not comparar_split(list(sample),individuo,range(0,5))):
+			return False
+	
+	if (not ((list(sample[6:11]) == individuo[6:11]))):
+		if (not comparar_split(list(sample),individuo,range(6,11))):
+			return False
+			
+	if (not ((list(sample[12:19]) == individuo[12:19]))):
+		if (not comparar_split(list(sample),individuo,range(12,19))):
+			return False
+			
+	if (not ((list(sample[20:30]) == individuo[20:30]))):
+		if (not comparar_split(list(sample),individuo,range(20,30))):
+			return False	
+	
+	if (not ((list(sample[31:]) == individuo[31:]))):
+		return False
+		
+	#print "s : %s, i : %s, bool : %s " %(sample[:5],individuo[:5],comparar_split(list(sample),individuo,range(0,5))) 	
+	return True
+
 #######################
 #######################
 #######  Fitness ######
 #######################
 #######################
-def match(chromosome,sample):
-	s = long(sample,2)
-	c = ''.join(chromosome.genomeList)
-	for i in range(0,len(c),RULE_SIZE):
-		if (long(c[i:i+RULE_SIZE],2) & s) == s:
-			return True
-	return False
 
 def fitness(individual):
-	score = 0
+	score = 0.0
 	for sample in TRAINING_SET:
 		if ( match(individual,sample) ):
-			score += 1
-	score = score / len(TRAINING_SET)
-	return (score * score)
+			print score
+			score += 1.0
+	#print len(TRAINING_SET) 
+	#score = score / len(TRAINING_SET)
+	#print "individual : \n%s" %(individual)
+	individual.score = score * score
+	individual.fitness = score * score
+	return score * score
 
 #######################
 #######################
@@ -169,16 +213,20 @@ def fitness(individual):
 
 ## Crossover
 def crossover_gabil(genome, **args):
-#def crossover_gabil(gDad, gMom):
-
+#def crossover_gabil():
+	print "Im in crossover"
 	sister = None
 	brother = None
 	gMom = args["mom"]
 	gDad = args["dad"]
-
+	
+	print "(1) GMom: %s, GDad: %s " %(gMom, gDad)
+	
 	if (len(gMom) < len(gDad)):
 		gMom , gDad = gDad, gMom
-		
+	
+	print "(2) GMom: %s, GDad: %s " %(gMom, gDad)
+	
 	splitMom = [ rand_randint( 1 , len(gMom) - 1) , rand_randint(1, len(gMom) - 1)]
 	
 	if (splitMom [1] < splitMom[0] ):
@@ -194,7 +242,7 @@ def crossover_gabil(genome, **args):
 	
 	nRulesD = len(gDad) / RULE_SIZE;
 	print nRulesD
-	splitDad = [ rand_randint( 1 , nRulesD) , rand_randint(1, nRulesD)]
+	splitDad = [ rand_randint( 1 , nRulesD + 1) , rand_randint(1, nRulesD + 1)]
 	
 	if (splitDad[0] > splitDad[1] ):
 		splitDad[0], splitDad[1] = splitDad[1], splitDad[0]
@@ -216,11 +264,14 @@ def crossover_gabil(genome, **args):
 	
 	sister = gMom.clone()
 	sister.resetStats()
-	sister.genomeList = [s1 + d2 + s3]
+	sister.stringLength = len(s1 + d2 + s3)
+	sister.genomeList = s1 + d2 + s3
 	
 	brother = gDad.clone()
 	brother.resetStats()
-	brother.genomeList = [d1 + s2 + d3]
+	brother.stringLength = len(d1 + s2 + d3)
+	brother.genomeList = d1 + s2 + d3
+	
 	#sister = s1 + d2 + s3
 	#brother = d1 + s2 + d3
 	
@@ -231,26 +282,31 @@ def crossover_gabil(genome, **args):
 ## 		Funcion modificada de la libreria de Pyevolve
 ##			para la representacion que tenemos.
 def G1DBinaryStringMutatorFlip_GABIL(genome, **args):
-   """ The classical flip mutator for binary strings """
-   if args["pmut"] <= 0.0: return 0
-   stringLength = len(genome)
-   mutations = args["pmut"] * (stringLength)
-   
-   if mutations < 1.0:
-      mutations = 0
-      for it in xrange(stringLength):
-         if Util.randomFlipCoin(args["pmut"]):
-            if genome[it] == '0': genome[it] = '1'
-            else: genome[it] = '0'
-            mutations+=1
+	print "Im in mutations"
+	if args["pmut"] <= 0.0:
+		return 0
+	stringLength = len(genome)
+	print stringLength
+	mutations = args["pmut"] * (stringLength)
 
-   else:
-      for it in xrange(int(round(mutations))):
-         which = rand_randint(0, stringLength-1)
-         if genome[which] == '0': genome[which] = '1'
-         else: genome[which] = '0'
-
-   return int(mutations)
+	if mutations < 1.0:
+		mutations = 0
+		for it in xrange(stringLength):
+			if Util.randomFlipCoin(args["pmut"]):
+				if genome.genomeList[it] == '0': 
+					genome.genomeList[it] = '1'
+				else: 
+					genome.genomeList[it] = '0'
+				mutations += 1.0
+	else:
+		for it in xrange(int(round(mutations))):
+			which = rand_randint(0, stringLength-1)
+			if genome.genomeList[which] == '0':
+				genome.genomeList[which] = '1'
+			else:
+				genome.genomeList[which] = '0'
+	
+	return int(mutations)
 
 ##################
 ##################
@@ -259,12 +315,19 @@ def G1DBinaryStringMutatorFlip_GABIL(genome, **args):
 ##################
 
 if len(sys.argv) != 7:
-	response = "Ejecutar como: ./gabil.py [archivoEntrenamiento] [Seleccion] [Fitness] [TasaMutuacion] [TasaCruce] [archivoPrueba]"
+	response = "Ejecutar como: ./gabil [archivoEntrenamiento] [Seleccion] [Fitness] [TasaMutuacion] [TasaCruce] [archivoPrueba]"
 	response += "\n\t seleccion: (1: Ruleta), (2: Mejor de la poblacion) "
 	response += "\n\t fitness: (1: Estandar), (2: )"
 	response += "\n\t 0.0 <= TasaMutuacion, TasaCruce <= 1.0"
 	print response
 	sys.exit()
+
+	
+#######################
+#######################
+#####  TRAINING  ######
+#######################
+#######################
 
 f = open(sys.argv[1],'r')
 
@@ -278,11 +341,6 @@ for line in f:
 	at = at + tipo(int(l[4]))
 	TRAINING_SET = TRAINING_SET + [at]
 
-#######################
-#######################
-#####  TRAINING  ######
-#######################
-#######################
 genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
 genome.initializator.set(init)
 
@@ -308,9 +366,15 @@ ga.setMutationRate(float(sys.argv[4]))
 ga.setCrossoverRate(float(sys.argv[5]))
 ga.setGenerations(GENERATIONS)
 ga.setPopulationSize(INIT_POP)
-ga.evolve(freq_stats=0)
+ga.evolve(0)
 
 f.close()
+
+#######################
+#######################
+#####  CLASSIFY  ######
+#######################
+#######################
 
 f = open(sys.argv[6],'r')
 for line in f:
@@ -323,18 +387,14 @@ for line in f:
 	at = at + tipo(int(l[4]))
 	SAMPLE_SET = SAMPLE_SET + [at]
 	
-#######################
-#######################
-#####  CLASSIFY  ######
-#######################
-#######################
-score = 0
+score = 0.0
 for sample in SAMPLE_SET:
-   if(match(ga.bestIndividual(),sample)):
-      score+=1
+	if(match(ga.bestIndividual(),sample)):
+		print score
+		score+=1.0
 
-print score
-print len(SAMPLE_SET)
-print float(score)/len(SAMPLE_SET)
+print "Score: %s, Sample_set: %s" %(score, len(SAMPLE_SET))
+
+print "porcentaje acertadas: %s" %((float(score)/len(SAMPLE_SET)) * 100)
 
 f.close()
