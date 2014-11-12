@@ -126,11 +126,8 @@ def init(genome, **args):
 	for i in xrange(size):
 		rule = [rand_choice(('0','1')) for j in xrange(RULE_SIZE)]
 		_set = _set + rule
-	#print _set
-	#print len(_set)
-	genome.genomeList = _set
+	genome.genomeString = _set
 	genome.stringLength = len(_set)
-	#print genome
 	
 """
 def init():
@@ -190,7 +187,7 @@ def match(individuo,sample):
 
 def match(chromosome,sample):
 	s = long(sample,2)
-	c = ''.join(chromosome.genomeList)
+	c = ''.join(chromosome.genomeString)
 	for i in range(0,len(c),RULE_SIZE):
 		if ((long(c[i:i+RULE_SIZE],2) & s) == s):
 			return True
@@ -274,14 +271,13 @@ def crossover_gabil(genome, **args):
 	
 	sister = gMom.clone()
 	sister.resetStats()
+	sister.genomeString = s1 + d2 + s3
 	sister.stringLength = len(s1 + d2 + s3)
-	sister.genomeList = s1 + d2 + s3
 	
 	brother = gDad.clone()
 	brother.resetStats()
+	brother.genomeString = d1 + s2 + d3
 	brother.stringLength = len(d1 + s2 + d3)
-	brother.genomeList = d1 + s2 + d3
-	
 	#sister = s1 + d2 + s3
 	#brother = d1 + s2 + d3
 	
@@ -296,25 +292,25 @@ def G1DBinaryStringMutatorFlip_GABIL(genome, **args):
 	if args["pmut"] <= 0.0:
 		return 0
 	stringLength = len(genome)
-	#print stringLength
+	
 	mutations = args["pmut"] * (stringLength)
 
 	if mutations < 1.0:
 		mutations = 0
 		for it in xrange(stringLength):
 			if Util.randomFlipCoin(args["pmut"]):
-				if genome.genomeList[it] == '0': 
-					genome.genomeList[it] = '1'
+				if genome.genomeString[it] == '0': 
+					genome.genomeString[it] = '1'
 				else: 
-					genome.genomeList[it] = '0'
+					genome.genomeString[it] = '0'
 				mutations += 1.0
 	else:
 		for it in xrange(int(round(mutations))):
-			which = rand_randint(0, stringLength-1)
-			if genome.genomeList[which] == '0':
-				genome.genomeList[which] = '1'
+			which = rand_randint(0, stringLength - 1)
+			if genome.genomeString[which] == '0':
+				genome.genomeString[which] = '1'
 			else:
-				genome.genomeList[which] = '0'
+				genome.genomeString[which] = '0'
 	
 	return int(mutations)
 
@@ -363,7 +359,8 @@ else:
 genome.crossover.set(crossover_gabil)
 genome.mutator.set(G1DBinaryStringMutatorFlip_GABIL)
 
-## Algoritmo Genetico
+## Algoritmo Genetico ##
+
 ga = GSimpleGA.GSimpleGA(genome)
 ga.terminationCriteria.set(GSimpleGA.FitnessStatsCriteria)
 
