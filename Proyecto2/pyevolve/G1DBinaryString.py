@@ -5,51 +5,17 @@
 This is the classical chromosome representation on GAs, it is the 1D
 Binary String. This string looks like "00011101010".
 
-
-Default Parameters
--------------------------------------------------------------
-
-*Initializator*
-   
-   :func:`Initializators.G1DBinaryStringInitializator`
-
-   The Binatry String Initializator for G1DBinaryString
-
-*Mutator*
-
-   :func:`Mutators.G1DBinaryStringMutatorFlip`
-
-   The Flip Mutator for G1DBinaryString
-
-*Crossover*
-
-   :func:`Crossovers.G1DBinaryStringXSinglePoint`
-
-   The Single Point Crossover for G1DBinaryString
-
-
-Class
--------------------------------------------------------------
-
-
 """
 
-from GenomeBase import GenomeBase, G1DBase
+from GenomeBase import GenomeBase
 import Consts
 import Util
     
-class G1DBinaryString(GenomeBase, G1DBase):
+class G1DBinaryString(GenomeBase):
    """ G1DBinaryString Class - The 1D Binary String chromosome
    
-   Inheritance diagram for :class:`G1DBinaryString.G1DBinaryString`:
-
-   .. inheritance-diagram:: G1DBinaryString.G1DBinaryString
-
-   This chromosome class extends the :class:`GenomeBase.GenomeBase`
-   and :class:`GenomeBase.G1DBase` classes.
-   
    Example:
-      >>> genome = G1DBinaryString.G1DBinaryString(5)
+      >>> g = G1DBinaryString(5)
 
    :param length: the 1D Binary String size
 
@@ -89,14 +55,65 @@ class G1DBinaryString(GenomeBase, G1DBase):
 
 
    def __init__(self, length=10):
-      """ The initializator of G1DList representation """
+      """ The initializator of G1DList representation, size parameter must be specified """
       GenomeBase.__init__(self)
-      G1DBase.__init__(self, length)
-      self.genomeList = []
+      self.genomeString = []
       self.stringLength = length
       self.initializator.set(Consts.CDefG1DBinaryStringInit)
       self.mutator.set(Consts.CDefG1DBinaryStringMutator)
       self.crossover.set(Consts.CDefG1DBinaryStringCrossover)
+
+   def __eq__(self, other):
+      """ Compares one chromosome with another
+      
+      :param other: the other G1DBinaryString instance
+      :rtype: True or False
+
+      """
+      cond1 = (self.genomeString   == other.genomeString)
+      cond2 = (self.stringLength   == other.stringLength)
+      return True if cond1 and cond2 else False
+
+   def __getslice__(self, a, b):
+      """ Return the sliced part of chromosome 
+
+      >>> g = G1DBinaryString(5)
+      >>> for i in xrange(len(g)):
+      ...    g.append(1)
+      >>> g[2:4]
+      [1, 1]
+
+      """
+      return self.genomeString[a:b]
+
+   def __setslice__(self, a, b, val):
+      """ Sets the slice part of chromosome 
+
+      >>> g = G1DBinaryString(5)
+      >>> for i in xrange(len(g)):
+      ...    g.append(0)
+      >>> g[1:3] = [1, 1]
+      >>> g.getBinary()
+      '01100'
+
+      """
+      self.genomeString[a:b] = val
+
+   def __getitem__(self, key):
+      """ Return the specified gene of List
+
+      >>> g = G1DBinaryString(5)
+      >>> for i in xrange(len(g)):
+      ...    g.append(1)
+      >>> g[4]
+      1
+      >>> g[20]
+      Traceback (most recent call last):
+        File "<stdin>", line 1, in <module>
+      IndexError: list index out of range
+      
+      """
+      return self.genomeString[key]
 
    def __setitem__(self, key, value):
       """ Set the specified value for an gene of List
@@ -109,15 +126,42 @@ class G1DBinaryString(GenomeBase, G1DBase):
       0
 
       """
-      if value not in (0, 1):
-         Util.raiseException("The value must be zero (0) or one (1), used (%s)" % value, ValueError)
-      G1DBase.__setitem__(self, key, value)
+      if len(self.genomeString) <= 0:      
+         Util.raiseException("The string is not initialized !")
 
+      if value not in (0,1):
+         Util.raiseException("The value must be zero (0) or one (1)", ValueError)
+
+      self.genomeString[key] = value
+
+   def __iter__(self):
+      """ Iterator support to the list
+      
+      >>> g = G1DBinaryString(5)
+      >>> for i in xrange(len(g)):
+      ...   g.append(1)
+      >>> for v in g:
+      ...   print v,
+      1 1 1 1 1
+
+      """
+      return iter(self.genomeString)
+   
+   def __len__(self):
+      """ Return the size of the List
+
+      >>> g = G1DBinaryString(5)
+      >>> len(g)
+      5
+
+      """
+      return self.stringLength
+      
    def __repr__(self):
       """ Return a string representation of Genome """
       ret = GenomeBase.__repr__(self)
       ret += "- G1DBinaryString\n"
-      ret += "\tString length:\t %s\n" % (self.getListSize(),)
+      ret += "\tString length:\t %s\n" % (self.stringLength,)
       ret += "\tString:\t\t %s\n\n" % (self.getBinary(),)
       return ret
 
@@ -164,8 +208,12 @@ class G1DBinaryString(GenomeBase, G1DBase):
       """
       if value not in [0, 1]:
          Util.raiseException("The value must be 0 or 1", ValueError)
-      G1DBase.append(self, value)
+      self.genomeString.append(value)
 
+   def clearString(self):
+      """ Remove all genes from Genome """
+      del self.genomeString[:]
+   
    def copy(self, g):
       """ Copy genome to 'g'
 
@@ -182,7 +230,8 @@ class G1DBinaryString(GenomeBase, G1DBase):
 
       """
       GenomeBase.copy(self, g)
-      G1DBase.copy(self, g)
+      g.stringLength = self.stringLength
+      g.genomeString = self.genomeString[:]
    
    def clone(self):
       """ Return a new instace copy of the genome
@@ -198,6 +247,6 @@ class G1DBinaryString(GenomeBase, G1DBase):
       :rtype: the G1DBinaryString instance clone
 
       """
-      newcopy = G1DBinaryString(self.getListSize())
+      newcopy = G1DBinaryString(self.stringLength)
       self.copy(newcopy)
       return newcopy

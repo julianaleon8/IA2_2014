@@ -28,22 +28,12 @@ class GAlleles:
 
    """
 
-   def __init__(self, allele_list = None, homogeneous=False):
+   def __init__(self, allele_list = [], homogeneous=False):
       """ The constructor of GAlleles class """
       self.allele_list = []
-      if allele_list is not None:
-         self.allele_list.extend(allele_list)
+      self.allele_list.extend(allele_list)
       self.homogeneous = homogeneous
      
-   def __iadd__(self, allele):
-      """ To add more alleles using the += operator
-      
-         .. versionadded:: 0.6
-            The __iadd__ method.
-      """
-      self.add(allele)
-      return self
-
    def add(self, allele):
       """ Appends one allele to the alleles list
       
@@ -114,11 +104,10 @@ class GAlleleList:
 
    """
 
-   def __init__(self, options=None):
+   def __init__(self, options=[]):
       """ The constructor of GAlleleList class """
       self.options = []
-      if options is not None:
-         self.options.extend(options)
+      self.options.extend(options)
 
    def clear(self):
       """ Removes all the allele options from the list """
@@ -190,14 +179,6 @@ class GAlleleRange:
       """ The constructor of GAlleleRange class """
       self.beginEnd = [(begin, end)]
       self.real = real
-      self.minimum = None
-      self.maximum = None
-      self.__processMinMax()
-
-   def __processMinMax(self):
-      """ Process the mininum and maximum of the Allele """
-      self.minimum = min([x for x,y in self.beginEnd])
-      self.maximum = max([y for x,y in self.beginEnd])
 
    def add(self, begin, end):
       """ Add a new range
@@ -206,49 +187,17 @@ class GAlleleRange:
       :param end: the end of the range
 
       """
-      if begin > end:
-         Util.raiseException('Wrong value, the end of the range (%s) is greater than the begin (%s) !' % (end, begin), ValueError)
       self.beginEnd.append((begin, end))
-      self.__processMinMax()
 
-   def __getitem__(self, index):
-      return self.beginEnd[index]
-
-   def __setitem__(self, index, value):
-      if value[0] > value[1]:
-         Util.raiseException('Wrong value, the end of the range is greater than the begin ! %s' % value, ValueError)
-      self.beginEnd[index] = value
-      self.__processMinMax()
-
-   def __iter__(self):
-      return iter(self.beginEnd)
-
-   def getMaximum(self):
-      """ Return the maximum of all the ranges
-
-      :rtype: the maximum value
-      """
-      return self.maximum
-
-   def getMinimum(self):
-      """ Return the minimum of all the ranges
-
-      :rtype: the minimum value
-      """
-      return self.minimum
-      
    def clear(self):
       """ Removes all ranges """
       del self.beginEnd[:]
-      self.minimum = None
-      self.maximum = None
 
    def getRandomAllele(self):
       """ Returns one random choice between the range """
       rand_func = random.uniform if self.real else random.randint
 
-      if len(self.beginEnd) <= 1: choice = 0      
-      else: choice = random.randint(0, len(self.beginEnd)-1)
+      choice = random.randint(0, len(self.beginEnd)-1)
       return rand_func(self.beginEnd[choice][0], self.beginEnd[choice][1])
 
    def setReal(self, flag=True):
@@ -277,3 +226,4 @@ class GAlleleRange:
          ret += "\t\t\t Range from [%s] to [%s]\n" % (beg, end)
       ret += "\n"
       return ret
+

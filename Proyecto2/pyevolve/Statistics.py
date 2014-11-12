@@ -7,6 +7,9 @@ This module have the class which is reponsible to keep statistics of each
 generation. This class is used by the adapters and other statistics dump objects.
 
 """
+
+import Consts
+
 class Statistics:
    """ Statistics Class - A class bean-like to store the statistics
 
@@ -20,9 +23,6 @@ class Statistics:
 
    **fitMax, fitMin, fitAve**
       Maximum, mininum and average of fitness scores
-
-   **rawTot, fitTot**
-      The total (sum) of raw scores and the fitness scores
 
    Example:
       >>> stats = ga_engine.getStatistics()
@@ -51,6 +51,7 @@ class Statistics:
                               "fitMax" : "Maximum fitness",
                               "fitMin" : "Minimum fitness",
                               "fitAve" : "Fitness average" }
+
    def __getitem__(self, key):
       """ Return the specific statistic by key """
       return self.internalDict[key]
@@ -76,7 +77,7 @@ class Statistics:
 
    def clear(self):
       """ Set all statistics to zero """
-      for k in self.internalDict.keys():
+      for k in self.__internalDict.keys():
          self.internalDict[k] = 0
 
    def items(self):

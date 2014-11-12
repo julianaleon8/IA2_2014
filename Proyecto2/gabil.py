@@ -11,6 +11,8 @@
 ########################################################
 
 from random import randint as rand_randint, uniform as rand_uniform, choice as rand_choice, randrange as randrange
+from pyevolve import G1DBinaryString
+from pyevolve import GSimpleGA
 from pyevolve import *
 import sys
 
@@ -118,7 +120,7 @@ def tipo(num):
 #######################
 #######################
 def init(genome, **args):
-	print "Im in init"
+#	print "Im in init"
 	_set = []
 	size = randrange(1,MAX_SET_SIZE +1)
 	for i in xrange(size):
@@ -138,10 +140,9 @@ def init():
 		rule = rand_choice(('0','1'))
 		_rule = _rule + rule
 	return _rule
-"""
+
 
 def comparar_split(ejemplo,individuo,rango):
-	"""Compara un pedazo de regla con otro"""
 	
 	coopera = False
 	for i in rango:
@@ -185,7 +186,16 @@ def match(individuo,sample):
 		
 	#print "s : %s, i : %s, bool : %s " %(sample[:5],individuo[:5],comparar_split(list(sample),individuo,range(0,5))) 	
 	return True
+"""
 
+def match(chromosome,sample):
+	s = long(sample,2)
+	c = ''.join(chromosome.genomeList)
+	for i in range(0,len(c),RULE_SIZE):
+		if ((long(c[i:i+RULE_SIZE],2) & s) == s):
+			return True
+	return False
+	
 #######################
 #######################
 #######  Fitness ######
@@ -196,7 +206,7 @@ def fitness(individual):
 	score = 0.0
 	for sample in TRAINING_SET:
 		if ( match(individual,sample) ):
-			print score
+			#print score
 			score += 1.0
 	#print len(TRAINING_SET) 
 	#score = score / len(TRAINING_SET)
@@ -214,34 +224,34 @@ def fitness(individual):
 ## Crossover
 def crossover_gabil(genome, **args):
 #def crossover_gabil():
-	print "Im in crossover"
+#	print "Im in crossover"
 	sister = None
 	brother = None
 	gMom = args["mom"]
 	gDad = args["dad"]
 	
-	print "(1) GMom: %s, GDad: %s " %(gMom, gDad)
+#	print "(1) GMom: %s, GDad: %s " %(gMom, gDad)
 	
 	if (len(gMom) < len(gDad)):
 		gMom , gDad = gDad, gMom
 	
-	print "(2) GMom: %s, GDad: %s " %(gMom, gDad)
+#	print "(2) GMom: %s, GDad: %s " %(gMom, gDad)
 	
-	splitMom = [ rand_randint( 1 , len(gMom) - 1) , rand_randint(1, len(gMom) - 1)]
+	splitMom = [ rand_randint( 1 , len(gMom) + 1) , rand_randint(1, len(gMom) + 1)]
 	
 	if (splitMom [1] < splitMom[0] ):
 		splitMom[0],splitMom[1] = splitMom[1],splitMom[0] 
 		
-	print "LenGMOM: %s, Split mom 0, Split mom 1: %s, %s " %(len(gMom),splitMom[0],splitMom[1])
+#	print "LenGMOM: %s, Split mom 0, Split mom 1: %s, %s " %(len(gMom),splitMom[0],splitMom[1])
 
 	s1 = gMom[0:splitMom[0]]
 	s2 = gMom[splitMom[0]:splitMom[1]]
 	s3 = gMom[splitMom[1]:len(gMom)]
 	
-	print "s1 : %s, s2 : %s, s3 : %s " %(s1,s2,s3)
+	#print "s1 : %s, s2 : %s, s3 : %s " %(s1,s2,s3)
 	
 	nRulesD = len(gDad) / RULE_SIZE;
-	print nRulesD
+	#print nRulesD
 	splitDad = [ rand_randint( 1 , nRulesD + 1) , rand_randint(1, nRulesD + 1)]
 	
 	if (splitDad[0] > splitDad[1] ):
@@ -256,11 +266,11 @@ def crossover_gabil(genome, **args):
 	if (n2 < n1):
 		n1,n2 = n2,n1
 
-	print "len_DAD: %s, Split dad 0, Split dad 1: %s, %s " %(len(gDad),n1,n2)
+#	print "len_DAD: %s, Split dad 0, Split dad 1: %s, %s " %(len(gDad),n1,n2)
 	d1 = gDad[0:n1]
 	d2 = gDad[n1:n2]
 	d3 = gDad[n2:len(gDad)]
-	print "d1 : %s, d2 : %s, d3 : %s " %(d1,d2,d3)
+#	print "d1 : %s, d2 : %s, d3 : %s " %(d1,d2,d3)
 	
 	sister = gMom.clone()
 	sister.resetStats()
@@ -282,11 +292,11 @@ def crossover_gabil(genome, **args):
 ## 		Funcion modificada de la libreria de Pyevolve
 ##			para la representacion que tenemos.
 def G1DBinaryStringMutatorFlip_GABIL(genome, **args):
-	print "Im in mutations"
+	#print "Im in mutations"
 	if args["pmut"] <= 0.0:
 		return 0
 	stringLength = len(genome)
-	print stringLength
+	#print stringLength
 	mutations = args["pmut"] * (stringLength)
 
 	if mutations < 1.0:
@@ -390,7 +400,7 @@ for line in f:
 score = 0.0
 for sample in SAMPLE_SET:
 	if(match(ga.bestIndividual(),sample)):
-		print score
+		#print score
 		score+=1.0
 
 print "Score: %s, Sample_set: %s" %(score, len(SAMPLE_SET))

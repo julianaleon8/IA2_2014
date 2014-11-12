@@ -7,32 +7,6 @@ integers or any kind of object, by default, we have genetic operators
 for integer and real lists, which can be found on the respective modules.
 This chromosome class extends the :class:`GenomeBase.GenomeBase`.
 
-Default Parameters
--------------------------------------------------------------
-
-*Initializator*
-   
-   :func:`Initializators.G2DListInitializatorInteger`
-
-   The Integer Initializator for G2DList
-
-*Mutator*
-
-   :func:`Mutators.G2DListMutatorSwap`
-
-   The Swap Mutator for G2DList
-
-*Crossover*
-
-   :func:`Crossovers.G2DListCrossoverUniform`
-
-   The Uniform Crossover for G2DList
-
-
-Class
--------------------------------------------------------------
-
-
 """
 
 from GenomeBase import GenomeBase
@@ -41,14 +15,13 @@ import Consts
 class G2DList(GenomeBase):
    """ G2DList Class - The 2D List chromosome representation
 
-   Inheritance diagram for :class:`G2DList.G2DList`:
-
-   .. inheritance-diagram:: G2DList.G2DList
-
    **Examples**
 
       The instantiation
          >>> genome = G2DList.G2DList(10, 10)
+
+      The instantiation
+         >>> g = G1DList(10)
 
       Compare
          >>> genome2 = genome1.clone()
@@ -78,8 +51,6 @@ class G2DList(GenomeBase):
          [1, 3, 4, 1]
          [666, 666, 666, 666]
          [9, 0, 1, 2]
-         >>> genome[1][1] = 2
-         (...)
 
    :param height: the number of rows
    :param width: the number of columns
@@ -118,7 +89,7 @@ class G2DList(GenomeBase):
       genome.crossover.set(Crossovers.G2DListCrossoverSingleHPoint)
    """
 
-   def __init__(self, height, width, cloning=False):
+   def __init__(self, height, width):
       """ The initializator of G2DList representation,
       height and width must be specified """
       GenomeBase.__init__(self)
@@ -129,10 +100,9 @@ class G2DList(GenomeBase):
       for i in xrange(height):
          self.genomeList[i] = [None] * width
 
-      if not cloning:
-         self.initializator.set(Consts.CDefG2DListInit)
-         self.mutator.set(Consts.CDefG2DListMutator)
-         self.crossover.set(Consts.CDefG2DListCrossover)
+      self.initializator.set(Consts.CDefG2DListInit)
+      self.mutator.set(Consts.CDefG2DListMutator)
+      self.crossover.set(Consts.CDefG2DListCrossover)
 
    def __eq__(self, other):
       """ Compares one chromosome with another """
@@ -147,7 +117,6 @@ class G2DList(GenomeBase):
       Example:
          >>> genome.getItem(3, 1)
          666
-         >>> genome[3][1]
       
       :param x: the x index, the column
       :param y: the y index, the row
@@ -161,7 +130,6 @@ class G2DList(GenomeBase):
 
       Example:
          >>> genome.setItem(3, 1, 666)
-         >>> genome[3][1] = 666
       
       :param x: the x index, the column
       :param y: the y index, the row
@@ -210,19 +178,6 @@ class G2DList(GenomeBase):
       ret += "\n"
       return ret
 
-   def resumeString(self):
-      """ Returns a resumed string representation of the Genome
-      
-      .. versionadded:: 0.6
-         The *resumeString* method.
-      """
-      ret = ""
-      for line in self.genomeList:
-         for item in line:
-            ret += "[%s] " % (item)
-         ret += "\n"
-      return ret
-
    def clearList(self):
       """ Remove all genes from Genome """
       del self.genomeList[:]
@@ -252,8 +207,7 @@ class G2DList(GenomeBase):
       :rtype: the G2DList clone instance
 
       """
-      newcopy = G2DList(self.height, self.width, True)
+      newcopy = G2DList(self.height, self.width)
       self.copy(newcopy)
       return newcopy
-
 

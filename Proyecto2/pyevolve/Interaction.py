@@ -10,23 +10,22 @@ and exposes to you in the name space called "it".
 To use this mode, the parameter *interactiveMode* must be enabled in the
 :class:`GSimpleGA.GSimpleGA`.
 
-You can use the manual method to enter in the Interactive Mode at specific
-generation using the :meth:`GSimpleGA.GSimpleGA.setInteractiveGeneration` method.
-
 """
-import logging
+import Util
 
 try:
+   print "Loading module pylab (matplotlib)...",
    import pylab
+   print " done!"
 except:
-   logging.debug("cannot import Matplotlib ! Plots will not be available !")
-   print "Warning: cannot import Matplotlib ! Plots will not be available !"
+   print "\nWarning: cannot import Matplotlib ! Plots will not be available !"
 
 try:
+   print "Loading module numpy...",
    import numpy
+   print " done!"
 except:
-   logging.debug("cannot import Numpy ! Some functions will not be available !")
-   print "Warning: cannot import Numpy ! Some functions will not be available !"
+   print "\nWarning: cannot import Numpy ! Some functions will not be available !"
 
 def getPopScores(population, fitness=False):
    """ Returns a list of population scores
