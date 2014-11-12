@@ -25,7 +25,7 @@ TRAINING_SET = []
 SAMPLE_SET = []
 MAX_SET_SIZE = 4
 RULE_SIZE = 32
-GENERATIONS = 100
+GENERATIONS = 1000000
 INIT_POP = 10
 
 #######################
@@ -170,7 +170,7 @@ def fitness(individual):
 ## Crossover
 def crossover_gabil(genome, **args):
 #def crossover_gabil(gDad, gMom):
-
+	print "comence vamos a ver "
 	sister = None
 	brother = None
 	gMom = args["mom"]
@@ -287,12 +287,15 @@ genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
 genome.initializator.set(init)
 
 ## Hay que hacer dos fitness
+
 if(int(sys.argv[2]) == 1):
+	
 	genome.evaluator.set(fitness)
 else:
 	genome.evaluator.set(fitness)
-
+	
 genome.crossover.set(crossover_gabil)
+
 genome.mutator.set(G1DBinaryStringMutatorFlip_GABIL)
 
 ## Algoritmo Genetico
