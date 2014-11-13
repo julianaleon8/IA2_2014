@@ -343,6 +343,6 @@ for sample in SAMPLE_SET:
 
 print "Score: %s, Sample_set: %s" %(score, len(SAMPLE_SET))
 
-print "% acertadas: %s" %((float(score)/len(SAMPLE_SET)) * 100)
+print "Porcentaje acertadas: %s" %((float(score)/len(SAMPLE_SET)) * 100)
 
 f.close()
