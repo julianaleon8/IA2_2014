@@ -1,8 +1,10 @@
 \documentclass{beamer}
 \usetheme{Oxygen}
 \usepackage{graphicx}
+\usepackage{setspace,cite} % Doble espacio para texto, espacio singular para
+                          
 \title{\large  M\'etricas de desempe\~no para Maquinas de Aprendizaje}
-\author{Juliana Le\'{o}n, Karen Troiano, Stefano Di Colli}
+\author{Juliana Le\'{o}n, Karen Troiano, Stefano De Colli}
 \begin{document}
 \fontfamily{tahoma}
 \frame{\titlepage}
@@ -62,12 +64,12 @@
 	\item Presion/Recall
 	\begin{itemize}
 		\item F1
-		\item Matthews correlation coefficient
+		\item Coeficiente de correlaci\'on de Matthews
 	\end{itemize}
 	\item Matriz de Confunsi\'on
 	\begin{itemize}
-		\item Sensibility
-		\item Specificity
+		\item Sensibilidad
+		\item Especificidad
 	\end{itemize}
 	\item ROC - Curva
 	\item Coeficiente Silhouette
@@ -116,10 +118,17 @@
 
   	\item Data Mining
   	\item Marketing
-   PONER TABLA
+ 
   \end{itemize}
-  
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+  \hline 
+  Antecedente & A & A & A & B & B & B & A \\ 
+  \hline 
+  Consecuente & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\ 
+  \hline 
+  \end{tabular} 
   \end{block}
+  
 \end{frame}
 
 \begin{frame}
@@ -128,7 +137,7 @@
   \begin{block}{Descripci\'on}
   	\begin{itemize}
 
-  	\item Presion: Predicci\'on de la clase positiva 
+  	\item Presicion: Predicci\'on de la clase positiva 
   	\[PPV= \dfrac{TP}{TP+FP} \] 
   	\item Recall: Predicci\'on de la clase negativa
 	\[PPV= \dfrac{TN}{TN+FN} \]   
@@ -142,14 +151,20 @@
 
 \begin{frame}
   \frametitle{F1 score}
-
-  \begin{block}{Descripci\'on}
+	\begin{block}{Descripci\'on}
+	 F1 se puede interpretar como una media ponderada de la precisi\'on y la recuperaci\'on, donde una 			puntuaci\'on de F1 alcanza su mejor valor en 1 y peor puntuación a 0.
+	\end{block}
+  \begin{block}{Definici\'on}
   	\begin{itemize}
   	\item Presion/Recall
   	\[F1= 2 \dfrac{Presion*Recall}{Presion+Recall} \]   
   	\end{itemize}
   \end{block}
-  \begin{block}{Matthews correlation coefficient}
+\end{frame}
+\begin{frame} 
+ \frametitle{Coeficiente de correlaci\'on de Matthews}
+
+  \begin{block}{Descripci\'on}
   \begin{itemize}
   	\item Coeficiente de correlaci\'on entre lo observado y lo que se predijo
   	\item Salida : [ -1, 1] 
@@ -167,23 +182,22 @@
   \frametitle{Matriz de Confusi\'on}
 
   \begin{block}{Descripci\'on}
-  	Organizacion de los datos para an\'alisis
-  	
-  	\begin{tabular}{|c|c|c|}
-  	\hline 
-  	• & Salida Positiva & Salida Negativa \\ 
-  	\hline 
-  	Real Positiva & TP & FN \\ 
-  	\hline 
-  	Real Negativa & FP & TN \\ 
-  	\hline 
-  	\end{tabular} 
+  	Organizaci\'on de los datos para un an\'alisis practico  
+ 
   \end{block}
+  \includegraphics[scale=0.5]{Picture.png} 
+  \end{frame}
+  \begin{frame}
+\frametitle{Matriz de Confusi\'on}
+  
   \begin{block}{M\'etricas obtenidas}
   \begin{itemize}
-  	\item Sensitivity: \[TPR=  \dfrac{TP}{TP+FN} \]   
-  	\item Specificity: \[TNR=  \dfrac{TN}{FP+TN} \]   
-	\item No datos desbalanceados
+  	\item Sensibilidad: \[TPR=  \dfrac{TP}{TP+FN} \]   
+  	\item Especificidad: \[TNR=  \dfrac{TN}{FP+TN} \]  
+  	\item Accuracy
+  	\item F1 score
+  	\item MCC (Coeficiente de correlaci\'on de Matthews)
+	\item Eficiencia: \[eff = \dfrac {Sensibilidad + Especificidad}{2}\]
     \end{itemize}
   
   \end{block}
@@ -195,7 +209,7 @@
 
   \begin{block}{Descripci\'on}
   	\begin{itemize}
-  	\item Graficar Sensitivity x Specificity
+  	\item Graficar Sensibilidad x Especificidad
   	\item Datos desbalanceados
   	\item Medicina y Biolog\'ia
   	\end{itemize}
@@ -209,7 +223,7 @@
   \begin{block}{Descripci\'on}
   \begin{itemize}
   \item Es un coeficiente usado para validar Clusters
-  	\item Por cada valor exite un coeficiente Silhouette que representa la clase 
+  	\item Por cada elemento, se calcula el coeficiente de Silhouette para verificar la correctitud de clasificaci\'on
   \end{itemize}
   	
   \end{block}
@@ -221,11 +235,11 @@
 \frametitle{Resumen}
 \begin{block}{}
 	\begin{itemize}
-	 \item Variedad de metricas
-	 \item Adaptivilidad
-	 \item Accuracity no es suficiente
-	 \item ROC y Matriz de confusion 
-	 \item Sin los datos etiquetados en un problema mas completo
+	 \item Variedad de m\'etricas
+	 \item M\'etricas depende de los datos
+	 \item Accuracy no es suficiente
+	 \item ROC y Matriz de confusi\'on 
+	 \item Sin los datos etiquetados en un problema mas completo \cite{AiRobotics}
 	\end{itemize}  
 \end{block}
 
@@ -236,4 +250,35 @@
 \LARGE{PREGUNTAS}
 \includegraphics[scale=0.5]{measure.jpg} 
 \end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle<presentation>{Referencias}    
+  \begin{thebibliography}{10}    
+   \setbeamertemplate{bibliography item}[online]
+  \bibitem{Autor1990}
+     HERDIANSYAH HAMZAH.
+    \newblock {\em Tools for Machine Learning Performance Evaluation}.
+   % \newblock Klein-Verlag, 1990.
+  \setbeamertemplate{bibliography item}[online]
+  \bibitem{Jemand2000}
+   Ron Kohavi
+    \newblock Glossary of Terms Special Issue on Applications of Machine Learning and the Knowledge Discovery Process
+    \newblock {\em Kluwer Academic Publishers, Boston, Manufactured in The Netherlands}, 1998
+    \newblock {http://robotics.stanford.edu/~ronnyk/glossary.html }
+  \end{thebibliography}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle<presentation>{Referencias}    
+  \begin{thebibliography}{10}    
+   \setbeamertemplate{bibliography item}[online]
+  \bibitem{Autor1990}
+  	Wikipedia
+    \newblock {\em http://en.wikipedia.org/wiki}.
+   
+  \end{thebibliography}
+\end{frame}
+
+\bibliographystyle{alpha.bst}
+\bibliography{referencias}
 \end{document}
