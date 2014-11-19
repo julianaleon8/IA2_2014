@@ -175,6 +175,7 @@ def fitness_by_size(individual):
 
 ## Crossover
 def crossover_gabil(genome, **args):
+#def crossover_gabil(gDad, gMom):
 	sister = None
 	brother = None
 	gMom = args["mom"]
@@ -291,13 +292,14 @@ for line in f:
 genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
 genome.initializator.set(init)
 
-## Hay que hacer dos fitness
+
 if(int(sys.argv[3]) == 1):
 	genome.evaluator.set(fitness)
 else:
 	genome.evaluator.set(fitness_by_size)
 
 genome.crossover.set(crossover_gabil)
+
 genome.mutator.set(G1DBinaryStringMutatorFlip_GABIL)
 
 ## Algoritmo Genetico ##
