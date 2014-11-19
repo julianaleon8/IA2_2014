@@ -13,6 +13,7 @@
 from random import randint as rand_randint, uniform as rand_uniform, choice as rand_choice, randrange as randrange
 from pyevolve import G1DBinaryString
 from pyevolve import GSimpleGA
+from pyevolve import Interaction as it
 from pyevolve import *
 import sys
 
@@ -130,9 +131,9 @@ def init(genome, **args):
 	genome.stringLength = len(_set)
 
 	
-def match(chromosome,sample):
+def match(individual,sample):
 	s = long(sample,2)
-	c = ''.join(chromosome.genomeString)
+	c = ''.join(individual.genomeString)
 	for i in range(0,len(c),RULE_SIZE):
 		if ((long(c[i:i+RULE_SIZE],2) & s) == s):
 			return True
@@ -149,9 +150,22 @@ def fitness(individual):
 	for sample in TRAINING_SET:
 		if ( match(individual,sample) ):
 			score += 1.0
-	individual.score = score * score
-	individual.fitness = score * score
-	return score * score
+	result = (score * score) / individual.stringLength
+	individual.score = result
+	individual.fitness = result
+	return result
+
+def fitness_by_size(individual):
+	score = 0
+	for sample in TRAINING_SET:
+		if(match(individual,sample)):
+			score+=1
+	lon = ((individual.stringLength)/RULE_SIZE + 1)
+	
+	result = int((score * score) + 1.0/(lon * lon)) 
+	individual.score = result
+	individual.fitness = result
+	return result
 
 #######################
 #######################
@@ -166,28 +180,21 @@ def crossover_gabil(genome, **args):
 	gMom = args["mom"]
 	gDad = args["dad"]
 	
-#	print "(1) GMom: %s, GDad: %s " %(gMom, gDad)
 	
 	if (len(gMom) < len(gDad)):
 		gMom , gDad = gDad, gMom
-	
-#	print "(2) GMom: %s, GDad: %s " %(gMom, gDad)
 	
 	splitMom = [ rand_randint( 1 , len(gMom) + 1) , rand_randint(1, len(gMom) + 1)]
 	
 	if (splitMom [1] < splitMom[0] ):
 		splitMom[0],splitMom[1] = splitMom[1],splitMom[0] 
-		
-#	print "LenGMOM: %s, Split mom 0, Split mom 1: %s, %s " %(len(gMom),splitMom[0],splitMom[1])
 
 	s1 = gMom[0:splitMom[0]]
 	s2 = gMom[splitMom[0]:splitMom[1]]
 	s3 = gMom[splitMom[1]:len(gMom)]
 	
-	#print "s1 : %s, s2 : %s, s3 : %s " %(s1,s2,s3)
 	
 	nRulesD = len(gDad) / RULE_SIZE;
-	#print nRulesD
 	splitDad = [ rand_randint( 1 , nRulesD + 1) , rand_randint(1, nRulesD + 1)]
 	
 	if (splitDad[0] > splitDad[1] ):
@@ -202,11 +209,9 @@ def crossover_gabil(genome, **args):
 	if (n2 < n1):
 		n1,n2 = n2,n1
 
-#	print "len_DAD: %s, Split dad 0, Split dad 1: %s, %s " %(len(gDad),n1,n2)
 	d1 = gDad[0:n1]
 	d2 = gDad[n1:n2]
 	d3 = gDad[n2:len(gDad)]
-#	print "d1 : %s, d2 : %s, d3 : %s " %(d1,d2,d3)
 	
 	sister = gMom.clone()
 	sister.resetStats()
@@ -217,8 +222,6 @@ def crossover_gabil(genome, **args):
 	brother.resetStats()
 	brother.genomeString = d1 + s2 + d3
 	brother.stringLength = len(d1 + s2 + d3)
-	#sister = s1 + d2 + s3
-	#brother = d1 + s2 + d3
 	
 	return (sister, brother)
 
@@ -289,10 +292,10 @@ genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
 genome.initializator.set(init)
 
 ## Hay que hacer dos fitness
-if(int(sys.argv[2]) == 1):
+if(int(sys.argv[3]) == 1):
 	genome.evaluator.set(fitness)
 else:
-	genome.evaluator.set(fitness)
+	genome.evaluator.set(fitness_by_size)
 
 genome.crossover.set(crossover_gabil)
 genome.mutator.set(G1DBinaryStringMutatorFlip_GABIL)
@@ -336,7 +339,9 @@ score = 0.0
 for sample in SAMPLE_SET:
 	if(match(ga.bestIndividual(),sample)):
 		score+=1.0
-
+		
+it.plotHistPopScore(genome)
+print  ga.bestIndividual(genome)
 print "Score: %s, Sample_set: %s" %(score, len(SAMPLE_SET))
 
 print "Porcentaje acertadas: %s" %((float(score)/len(SAMPLE_SET)) * 100)
