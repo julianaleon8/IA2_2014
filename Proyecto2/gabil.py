@@ -13,7 +13,6 @@
 from random import randint as rand_randint, uniform as rand_uniform, choice as rand_choice, randrange as randrange
 from pyevolve import G1DBinaryString
 from pyevolve import GSimpleGA
-from pyevolve import Interaction as it
 from pyevolve import *
 import sys
 
@@ -22,8 +21,8 @@ SAMPLE_SET = []
 MAX_SET_SIZE = 3
 RULE_SIZE = 32
 MAX_RULE_SIZE = 128
-GENERATIONS = 1000
-INIT_POP = 10
+GENERATIONS = 100
+INIT_POP = 6
 
 #######################
 #######################
@@ -125,7 +124,7 @@ def init(genome, **args):
 	_set = []
 	size = randrange(1,MAX_SET_SIZE +1)
 	for i in xrange(size):
-		rule = [rand_choice(('0','1')) for j in xrange(RULE_SIZE)]
+		rule = [ rand_choice(('0','1')) for j in xrange(RULE_SIZE)]
 		_set = _set + rule
 	genome.genomeString = _set
 	genome.stringLength = len(_set)
@@ -226,6 +225,7 @@ def crossover_gabil(genome, **args):
 	
 	return (sister, brother)
 
+	
 ## Mutation
 
 ## 		Funcion modificada de la libreria de Pyevolve
@@ -292,7 +292,6 @@ for line in f:
 genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
 genome.initializator.set(init)
 
-
 if(int(sys.argv[3]) == 1):
 	genome.evaluator.set(fitness)
 else:
@@ -303,7 +302,6 @@ genome.crossover.set(crossover_gabil)
 genome.mutator.set(G1DBinaryStringMutatorFlip_GABIL)
 
 ## Algoritmo Genetico ##
-
 ga = GSimpleGA.GSimpleGA(genome)
 ga.terminationCriteria.set(GSimpleGA.FitnessStatsCriteria)
 
@@ -342,8 +340,7 @@ for sample in SAMPLE_SET:
 	if(match(ga.bestIndividual(),sample)):
 		score+=1.0
 		
-it.plotHistPopScore(genome)
-print  ga.bestIndividual(genome)
+#print  ga.bestIndividual()
 print "Score: %s, Sample_set: %s" %(score, len(SAMPLE_SET))
 
 print "Porcentaje acertadas: %s" %((float(score)/len(SAMPLE_SET)) * 100)
