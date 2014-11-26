@@ -18,11 +18,9 @@ import sys
 
 TRAINING_SET = []
 SAMPLE_SET = []
-MAX_SET_SIZE = 3
+SET_SIZE = 3
 RULE_SIZE = 32
 MAX_RULE_SIZE = 128
-GENERATIONS = 100
-INIT_POP = 6
 
 #######################
 #######################
@@ -120,21 +118,21 @@ def tipo(num):
 #######################
 #######################
 def init(genome, **args):
-#	print "Im in init"
 	_set = []
-	size = randrange(1,MAX_SET_SIZE +1)
+	size = randrange(1,SET_SIZE +1)
 	for i in xrange(size):
-		rule = [ rand_choice(('0','1')) for j in xrange(RULE_SIZE)]
+		rule = [ rand_choice(('0','0')) for j in xrange(RULE_SIZE)]
 		_set = _set + rule
 	genome.genomeString = _set
 	genome.stringLength = len(_set)
 
 	
 def match(individual,sample):
-	s = long(sample,2)
+	s = long(sample, 2)
 	c = ''.join(individual.genomeString)
 	for i in range(0,len(c),RULE_SIZE):
-		if ((long(c[i:i+RULE_SIZE],2) & s) == s):
+		rule = long(c[i:i+RULE_SIZE], 2)
+		if ((rule & s) == s):
 			return True
 	return False
 
@@ -149,22 +147,22 @@ def fitness(individual):
 	for sample in TRAINING_SET:
 		if ( match(individual,sample) ):
 			score += 1.0
-	result = (score * score) / individual.stringLength
-	individual.score = result
-	individual.fitness = result
-	return result
+	result = score / len(TRAINING_SET)
+	individual.score = result * result
+	individual.fitness = result * result
+	return result * result
 
 def fitness_by_size(individual):
 	score = 0
 	for sample in TRAINING_SET:
 		if(match(individual,sample)):
 			score+=1
+			
 	lon = ((individual.stringLength)/RULE_SIZE + 1)
-	
-	result = int((score * score) + 1.0/(lon * lon)) 
-	individual.score = result
-	individual.fitness = result
-	return result
+	result = int(score + 1.0/lon)
+	individual.score = result * result
+	individual.fitness = result * result
+	return result * result
 
 #######################
 #######################
@@ -265,7 +263,7 @@ def G1DBinaryStringMutatorFlip_GABIL(genome, **args):
 if len(sys.argv) != 7:
 	response = "Ejecutar como: ./gabil [archivoEntrenamiento] [Seleccion] [Fitness] [TasaMutuacion] [TasaCruce] [archivoPrueba]"
 	response += "\n\t seleccion: (1: Ruleta), (2: Mejor de la poblacion) "
-	response += "\n\t fitness: (1: Estandar), (2: )"
+	response += "\n\t fitness: (1: Estandar), (2: Por tamano)"
 	response += "\n\t 0.0 <= TasaMutuacion, TasaCruce <= 1.0"
 	print response
 	sys.exit()
@@ -289,7 +287,7 @@ for line in f:
 	at = at + tipo(int(l[4]))
 	TRAINING_SET = TRAINING_SET + [at]
 
-genome = G1DBinaryString.G1DBinaryString(MAX_SET_SIZE)
+genome = G1DBinaryString.G1DBinaryString(SET_SIZE)
 genome.initializator.set(init)
 
 if(int(sys.argv[3]) == 1):
@@ -312,8 +310,8 @@ else:
 
 ga.setMutationRate(float(sys.argv[4]))
 ga.setCrossoverRate(float(sys.argv[5]))
-ga.setGenerations(GENERATIONS)
-ga.setPopulationSize(INIT_POP)
+ga.setGenerations(100)
+ga.setPopulationSize(10)
 ga.evolve(0)
 
 f.close()
@@ -340,7 +338,7 @@ for sample in SAMPLE_SET:
 	if(match(ga.bestIndividual(),sample)):
 		score+=1.0
 		
-#print  ga.bestIndividual()
+print  ga.bestIndividual()
 print "Score: %s, Sample_set: %s" %(score, len(SAMPLE_SET))
 
 print "Porcentaje acertadas: %s" %((float(score)/len(SAMPLE_SET)) * 100)
